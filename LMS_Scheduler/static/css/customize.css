@@ -1,0 +1,174 @@
+body {
+    background-color: #FFF;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* header */
+
+header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(150, 150, 150);
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.header_inner {
+    margin: 0 auto;
+    width: 1800px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header_left {
+    display: flex;
+    justify-content: flex-start;
+    width: 33.3%;
+}
+
+.nav {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.header_mid {
+    display: flex;
+    justify-content: center;
+    width: 33.3%;
+}
+
+.logo {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.logo_text {
+    text-decoration: none;
+    color: #333;
+    font-size: 26px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: bold;
+}
+
+.header_right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 33.3%;
+}
+
+/* Body */
+
+.contain {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    vertical-align: middle;
+    align-items: center;
+    width: 100%;
+    height: 90vh;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 95%;
+    height: 100%;
+    margin: 50px 0;
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+.content_top {
+    margin: 10px;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.content_bottom {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+    width: inherit;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 33%;
+}
+
+.chosen_stamp {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.text {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.stamps {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.stamps button {
+    width: 100px;
+    height: 100px;
+    margin: 0 10px;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 33%;
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.colortheme {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.colors {
+    padding: 10px;
+    align-items: center;
+}
+
+.colors button {
+    width: 40px;
+    height: 40px;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 33%;
+}
+
+.type_choice {
+    margin: 10px 0;
+}

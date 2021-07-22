@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/calendar.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <title>Calendar</title>
   </head>
   <body>
@@ -30,9 +33,9 @@
         </div>
         <!-- header right -->
         <div class="header_right">
-          <a class="nav" href="">출석체크</a>
-          <a class="nav" href="">마이페이지</a>
-          <a class="nav" href="">로그아웃</a>
+          <a class="nav" href="{% url 'calendar' %}">출석체크</a>
+          <a class="nav" href="{% url 'mypage' %}">마이페이지</a>
+          <a class="nav" href="{% url 'logout' %}">로그아웃</a>
         </div>
         <!-- end header right -->
       </div>
@@ -43,7 +46,7 @@
       <div class="content">
         <div class="content_top">
           <div class="top_left" id="customizing">
-            <a href="">커스터마이징</a>
+            <a href="{% url 'customize' %}">커스터마이징</a>
           </div>
           <div class="top_center" id="date">
             <a href="">날짜</a>

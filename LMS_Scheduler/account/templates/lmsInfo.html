@@ -16,7 +16,7 @@
                     <h1>개강한 대학생</h1>
                     <img src="{% static 'rightarm.png' %}" width="60px">
                 </div>
-                <form class = "login" method="POST" action="{%url 'lmsSignup' %}">
+                <form class = "login" method="POST" action="{% url 'lmsSignup' %}">
                     {% csrf_token %}
                     {% if error %}
                         <p>{{error}}</p>

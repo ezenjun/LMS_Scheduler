@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from bs4 import BeautifulSoup
 import requests
+from django.contrib.auth.models import AnonymousUser, User
 from account.models import Customer
 # Create your views here.
 
@@ -125,4 +126,17 @@ def home(request):
     #     print("------------------------------------")
 
     # print(lectures)
-    return redirect('/')
+    cur_user = request.user
+    print("curuser:", cur_user)
+    # if cur_user is None:
+    #     return render(request, "mainLogin.html")
+    # if cur_user.is_authenticated:
+    #     user = User.objects.get(user = request.user)
+    #     return render(request, "home.html")
+    # else:
+    #     return render(request, "mainLogin.html")
+    if cur_user.is_anonymous:
+        print('aaa')
+        return redirect('mainLogin')
+
+    # return render(request, 'home.html')

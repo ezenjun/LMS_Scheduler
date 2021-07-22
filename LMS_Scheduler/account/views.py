@@ -5,6 +5,7 @@ from .models import *
 from django.http import JsonResponse  
 import requests
 import json
+from lms.views import home
 # Create your views here.
 
 def kakao_signup(request):
@@ -78,7 +79,8 @@ def mainLogin(request):
 
 def logout(request):
     auth.logout(request)
-    return render(request, 'mainLogin.html')
+    print("logout success")
+    return redirect('mainLogin')
 
 
 def signup(request):
@@ -98,7 +100,7 @@ def idSignup(request):
                 username,password=password
             )
             auth.login(request,user)
-            return render(request,'lmsInfo.html')
+            return redirect('lmsSignup')
         else :
             return render(request,'idSignup.html',{'error':"비밀번호 확인이 일치하지 않습니다"})
     else:
@@ -112,7 +114,7 @@ def lmsSignup(request):
         if lmsPwd==request.POST['lmsPwdCheck']:
             customer = Customer(user=user, lmsId = lmsId, lmsPwd=lmsPwd)
             customer.save()
-            return render(request,'home.html')
+            return redirect(home)
         else :
             return render(request,'lmsInfo.html',{'error':"비밀번호 확인이 일치하지 않습니다"})
     else:

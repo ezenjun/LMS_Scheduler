@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 import account.views
+app_name = "LMS_Scheduler"
 urlpatterns = [
     path('', account.views.mainLogin,name="mainLogin"),
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('lms/', include('lms.urls')),
-    path('',account.views.logout,name="logout"), # 초기화면 때문에 include 처리 안함
+    # path('',account.views.logout,name="logout"), # 초기화면 때문에 include 처리 안함
 ]
