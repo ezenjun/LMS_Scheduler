@@ -1,0 +1,149 @@
+body {
+    background-image: url(../img/statistics.jpg);
+    background-size: cover;
+    background-position: center;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* header */
+
+header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(150, 150, 150);
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.header_inner {
+    margin: 0 auto;
+    width: 1800px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header_left {
+    display: flex;
+    justify-content: flex-start;
+    width: 33.3%;
+}
+
+.nav {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.header_mid {
+    display: flex;
+    justify-content: center;
+    width: 33.3%;
+}
+
+.logo {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.logo_text {
+    text-decoration: none;
+    color: #333;
+    font-size: 26px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: bold;
+}
+
+.header_right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 33.3%;
+}
+
+/* Body */
+
+.contain {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    vertical-align: middle;
+    align-items: center;
+    width: 100%;
+    height: 90vh;
+    margin-bottom: 30px;
+}
+
+.content {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 90%;
+    height: 100%;
+    margin: 30px 0;
+    background-color: rgba(255, 255, 255, 0.53); 
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+.content_text{
+    display: flex;
+    justify-content:flex-end;
+    padding-top: 50px;
+    width: 90%;
+}
+
+.rank{
+    display: flex;
+    justify-content: right;
+}
+
+.rank a{
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    font-weight: bold;
+}
+
+.rank a:hover{
+    color:rgba(54, 162, 235);
+}
+
+.content_box{
+    display: flex;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.chart{
+    width:inherit;
+}
+
+.statbox{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    height: 100%;
+}
+
+.weekly_top{
+    font-weight: bold;
+    margin-bottom: 100px;
+}
+p:first-child{
+    font-size: x-large;
+}
+.monthly_top{
+    font-weight: bold;
+    margin-bottom: 100px;    
+}
+.chart{
+    min-width: 600px;
+}

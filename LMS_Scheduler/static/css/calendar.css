@@ -4,7 +4,9 @@
 }
 
 body {
-    background-color: #FFF;
+    background-image: url("../img/CalendarBackground_crop.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
     font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -137,7 +139,7 @@ header {
 .calendar {
     height: 75vh;
     width: 70%;
-    background-color: var(--bg-main);
+    background-color: rgba(255, 255, 255, 0.616); 
     border-radius: 30px;
     padding: 10px;
     position: relative;

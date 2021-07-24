@@ -16,9 +16,10 @@ urlpatterns = [
     path('oauth/', views.oauth, name="oauth"),
     path('kakaologin/', views.kakoredirect, name="kakaologin"),
     path('calendar/', views.calendar, name = "calendar"),
-    path('mypage/',views.mypage,name="mypage"),
     path('calendar/customize', views.customize, name = "customize"),
     path('home/', lms.views.home, name = "home"),
     path('mainLogin',views.mainLogin, name = "mainlogin"),
+    path('statistic/', views.statistic, name = "statistic"),
+    path('mypage/',views.mypage,name="mypage"),
     path('',views.logout,name="logout"), # 초기화면 때문에 include 처리 안함
 ]

@@ -144,6 +144,8 @@ def mypage(request):
 def customize(request):
     return render(request, 'customize.html')
 
-
+def statistic(request):
+    return render(request, "statistic.html")
+    
 def new(request):
     return render(request,'home.html')

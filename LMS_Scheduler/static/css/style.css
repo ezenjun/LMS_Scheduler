@@ -1,5 +1,7 @@
 body {
-  background-color: #FFF;
+  background-image: url(../img/MainBackground.jpg);
+  background-size: cover;
+  background-position: center;
   font-family: 'Nanum Gothic', sans-serif;
 }
 /* header */
@@ -94,6 +96,7 @@ header{
   display: flex;
   height: 700px;
   margin: 0px 10px 70px 10px;
+  background-color: rgb(255, 255, 255);
   text-align: center;
   justify-content: center;
   flex-direction: column;
