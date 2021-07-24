@@ -11,7 +11,7 @@ from lms.views import home
 def kakao_signup(request):
     login_request_uri = 'https://kauth.kakao.com/oauth/authorize?'
     client_id = 'f73eac580e0bc9a9152e0eaedda3100a'
-    redirect_uri = 'http://127.0.0.1:8000/oauth'
+    redirect_uri = 'http://127.0.0.1:8000/account/oauth'
 
     login_request_uri += 'client_id=' + client_id
     login_request_uri += '&redirect_uri=' + redirect_uri
@@ -25,7 +25,7 @@ def oauth(request):
     data = dict(
         grant_type='authorization_code',
         client_id='f73eac580e0bc9a9152e0eaedda3100a',
-        redirect_uri ='http://127.0.0.1:8000/oauth',
+        redirect_uri ='http://127.0.0.1:8000/account/oauth',
         code = authcode,
     )
     response = requests.post('https://kauth.kakao.com/oauth/token', data=data)
@@ -35,13 +35,24 @@ def oauth(request):
         text = json.loads(user_info_response.text)
         kakaoId = text['id']
         if User.objects.filter(username=kakaoId).exists():
-            return render(request,'mainLogin.html',{'error':"이미 존재하는 사용자입니다."})
+            return redirect(mainLogin)
         else: 
             user=User.objects.create_user(
                 kakaoId, password='0'
             )
             auth.login(request,user)
-        return render(request, 'lmsInfo.html')
+        return redirect(lmsSignup)
+
+def kakao_login(request):
+    login_request_uri = 'https://kauth.kakao.com/oauth/authorize?'
+    client_id = 'f73eac580e0bc9a9152e0eaedda3100a'
+    redirect_uri = 'http://127.0.0.1:8000/account/kakaologin'
+
+    login_request_uri += 'client_id=' + client_id
+    login_request_uri += '&redirect_uri=' + redirect_uri
+    login_request_uri += '&response_type=code'
+    
+    return redirect(login_request_uri)
 
 def kakoredirect(request):
     authcode = request.GET['code']
@@ -49,7 +60,7 @@ def kakoredirect(request):
     data = dict(
         grant_type='authorization_code',
         client_id='f73eac580e0bc9a9152e0eaedda3100a',
-        redirect_uri ='http://127.0.0.1:8000/kakaologin',
+        redirect_uri ='http://127.0.0.1:8000/account/kakaologin',
         code = authcode,
     )
     response = requests.post('https://kauth.kakao.com/oauth/token', data=data)
@@ -58,20 +69,12 @@ def kakoredirect(request):
         user_info_response = requests.get('https://kapi.kakao.com/v2/user/me', headers={'Authorization':f'Bearer {token}'})
         text = json.loads(user_info_response.text)
         kakaoId = text['id']
+        password = "has8830!"
+        user=auth.authenticate(request,username=kakaoId,password='0')
+        print("user - ", user)
         if User.objects.filter(username=kakaoId).exists():
-            auth.login(request, request.user)
-            return render(request, 'home.html')        
-
-def kakao_login(request):
-    login_request_uri = 'https://kauth.kakao.com/oauth/authorize?'
-    client_id = 'f73eac580e0bc9a9152e0eaedda3100a'
-    redirect_uri = 'http://127.0.0.1:8000/kakaologin'
-
-    login_request_uri += 'client_id=' + client_id
-    login_request_uri += '&redirect_uri=' + redirect_uri
-    login_request_uri += '&response_type=code'
-    
-    return redirect(login_request_uri)
+            auth.login(request, user)
+            return redirect(home)    
 
 
 def mainLogin(request):
@@ -125,7 +128,6 @@ def manuallogin(request):
         username=request.POST['username']
         password=request.POST['password']
         user=auth.authenticate(request,username=username,password=password)
-        print(user)
         if user != None:
             auth.login(request,user)
             return render(request,'home.html')
