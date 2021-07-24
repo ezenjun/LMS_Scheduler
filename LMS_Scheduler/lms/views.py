@@ -138,5 +138,5 @@ def home(request):
     if cur_user.is_anonymous:
         print('aaa')
         return redirect('mainLogin')
-
-    # return render(request, 'home.html')
+    else:
+     return render(request, 'home.html')

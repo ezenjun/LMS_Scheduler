@@ -1,0 +1,320 @@
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    min-width: 600px;
+    min-height: 450px;
+}
+
+/* header */
+
+header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(150, 150, 150);
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.header_inner {
+    margin: 0 auto;
+    width: 1800px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header_left {
+    display: flex;
+    justify-content: flex-start;
+    width: 33.3%;
+}
+
+.nav {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    margin: 0 20px;
+}
+
+.header_mid {
+    display: flex;
+    justify-content: center;
+    width: 33.3%;
+}
+
+.logo {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.logo_text {
+    text-decoration: none;
+    color: #333;
+    font-size: 26px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: bold;
+}
+
+.header_right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 33.3%;
+}
+
+/* * {
+    box-sizing: border-box;
+} */
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
+/* Style the tab */
+
+.contain {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    vertical-align: middle;
+    align-items: center;
+    width: 100%;
+    height: 95vh;
+}
+
+.content {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+    height: 100%;
+    margin: 50px 0;
+    border-radius: 30px;
+    /* padding: 30px; */
+}
+
+.tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 30%;
+    height: 100%;
+}
+
+/* Style the buttons inside the tab */
+
+.tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+
+.tabcontent {
+    padding: 30px;
+    border: 1px solid #ccc;
+    width: 70%;
+    border-left: none;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu {
+    width: 70%;
+    display: flex;
+}
+
+/* 회원정보 수정 */
+
+.box {
+    display: flex;
+    border: 1px solid #ccc;
+    height: 80%;
+    width: 70%;
+    padding: 35px;
+    justify-content: space-around;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.user {
+    margin-bottom: 15px;
+}
+
+/* 우선순위 */
+
+.priority_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.priority_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 37px;
+}
+
+#sortable {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 60%;
+    height: 100%;
+}
+
+#sortable li {
+    margin: 0 10px 0px 10px;
+    padding: 0.4em;
+    padding-left: 1.5em;
+    font-size: 1em;
+}
+
+#sortable li span {
+    position: absolute;
+    margin-left: -1em;
+}
+
+/* 성향 */
+
+.lecture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    width: 80%;
+}
+
+.buttons button {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: white;
+    border: 1px solid rgb(160, 160, 160);
+    padding: 8px;
+}
+
+/* 공지사항 */
+
+.noticebox {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    height: 80%;
+    width: 70%;
+    padding: 35px;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.notice_text {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.notices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.notice {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    margin: 15px 0;
+}
+
+.line {
+    width: 100%;
+    border-bottom: 1px solid rgb(161, 161, 161);
+}
+
+.inputbox {
+    display: flex;
+    border: 1px solid #ccc;
+    height: 80%;
+    width: 70%;
+    padding: 35px;
+    justify-content: space-around;
+}
+
+.faqbutton {
+    display: flex;
+    justify-content: flex-end;
+    width: 70%;
+    margin: 10px;
+}
+
+/* 고객센터 */
+
+.csbox {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    height: 80%;
+    width: 70%;
+    padding: 35px;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .notice_id {
+    width: 25%;
+}
+
+.notice_title {
+    width: 25%;
+    text-align: center;
+}
+
+.notice_date {
+    width: 25%;
+    text-align: center;
+}
+
+.notice_view {
+    width: 25%;
+    text-align: center;
+} */

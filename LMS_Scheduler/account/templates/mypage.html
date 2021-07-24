@@ -1,1 +1,415 @@
-<h1>^^</h1>
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script>
+      $(function () {
+        $("#sortable").sortable();
+        $("#sortable").disableSelection();
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <!-- header inner -->
+      <div class="header_inner">
+        <!-- header left -->
+        <div class="header_left">
+          <!-- logo -->
+          <div class="logo">
+            <a class="nav" href="/" title="home" class="logo_text">About us</a>
+          </div>
+          <!-- end logo -->
+        </div>
+        <!-- end header left -->
+        <div class="header_mid">
+          <div class="logo">
+            <img src="{% static 'leftarm.png' %}" width="60px" />
+            <a href="/" title="home" class="logo_text">개강한 대학생</a>
+            <img src="{% static 'rightarm.png' %}" width="60px" />
+          </div>
+        </div>
+        <!-- header right -->
+        <div class="header_right">
+          <a class="nav" href="{% url 'calendar' %}">출석체크</a>
+          <a class="nav" href="{% url 'mypage' %}">마이페이지</a>
+          <a class="nav" href="{% url 'logout' %}">로그아웃</a>
+        </div>
+        <!-- end header right -->
+      </div>
+      <!-- end header inner -->
+    </header>
+    <div class="contain">
+      <div class="content">
+        <div class="tab">
+          <button
+            class="tablinks"
+            onclick="openCity(event, 'userinfo')"
+            id="defaultOpen"
+          >
+            회원정보 수정
+          </button>
+          <button class="tablinks" onclick="openCity(event, 'priority')">
+            우선순위
+          </button>
+          <button class="tablinks" onclick="openCity(event, 'usertype')">
+            나의 성향
+          </button>
+          <button class="tablinks" onclick="openCity(event, 'setting')">
+            설정
+          </button>
+          <button class="tablinks" onclick="openCity(event, 'notice')">
+            공지사항
+          </button>
+          <button class="tablinks" onclick="openCity(event, 'faq')">FAQ</button>
+          <button
+            class="tablinks"
+            onclick="openCity(event, 'customer_service')"
+          >
+            고객센터
+          </button>
+        </div>
+
+        <div id="userinfo" class="tabcontent">
+          <div class="menu"><p>회원정보 수정</p></div>
+          <div class="box">
+            <div class="usericon">
+              <img src="{% static 'userimage/cat.png'%}" width="80px" />
+            </div>
+            <div class="info">
+              <div class="user" id="username">이름 : <input type="text" /></div>
+              <div class="user" id="userid">아이디 : <input type="text" /></div>
+              <div class="user" id="userpwd">
+                비밀번호 : <input type="text" />
+              </div>
+              <div class="user" id="userpwdchk">
+                비밀번호 확인 : <input type="text" />
+              </div>
+            </div>
+            <div class="edit">
+              <span
+                class="iconify"
+                data-icon="akar-icons:edit"
+                data-inline="false"
+                width="30px"
+              ></span>
+            </div>
+          </div>
+        </div>
+
+        <div id="priority" class="tabcontent">
+          <div class="menu"><p>우선 순위</p></div>
+          <div class="box">
+            <div class="priority_list">
+              <div class="priority_text">1 순위</div>
+              <div class="priority_text">2 순위</div>
+              <div class="priority_text">3 순위</div>
+              <div class="priority_text">4 순위</div>
+              <div class="priority_text">5 순위</div>
+              <div class="priority_text">6 순위</div>
+              <div class="priority_text">7 순위</div>
+            </div>
+            <ul id="sortable">
+              <li class="ui-state-default">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1
+              </li>
+              <li class="ui-state-default">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2
+              </li>
+              <li class="ui-state-default">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3
+              </li>
+              <li class="ui-state-default">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4
+              </li>
+              <li class="ui-state-default">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5
+              </li>
+              <li class="ui-state-default">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6
+              </li>
+              <li class="ui-state-default">
+                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="usertype" class="tabcontent">
+          <div class="menu"><p>본인의 성향을 골라주세요</p></div>
+          <div class="box">
+            <div class="lecture">
+              <div>강의 듣기</div>
+              <div class="buttons" id="lecture_type">
+                <button>올라오자마자 바로!</button>
+                <button>늦어도 제출 3일 전에!</button>
+                <button>하루 전날!</button>
+                <button>극한의 타임어택형!</button>
+              </div>
+            </div>
+            <div class="lecture" id="assignmnet_type">
+              <div>과제 하기</div>
+              <div class="buttons">
+                <button>올라오자마자 바로!</button>
+                <button>늦어도 제출 3일 전에!</button>
+                <button>하루 전날!</button>
+                <button>극한의 타임어택형!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="setting" class="tabcontent">
+          <div class="menu"><p>환경 설정</p></div>
+          <div class="box">
+            <div class="lecture">
+              <div>글꼴 크기</div>
+              <div class="buttons" id="lecture_type">
+                <button>작게</button>
+                <button>보통</button>
+                <button>조금 크게</button>
+                <button>매우 크게</button>
+              </div>
+            </div>
+            <div class="lecture" id="assignmnet_type">
+              <div>언어</div>
+              <div class="buttons">
+                <button>한국어</button>
+                <button>English</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="notice" class="tabcontent">
+          <div class="menu"><p>공지사항</p></div>
+          <div class="noticebox">
+            <div class="notice_text">
+              <div>NO</div>
+              <div>제목</div>
+              <div>날짜</div>
+              <div>조회수</div>
+            </div>
+            <div class="notices">
+              <div class="notice">
+                <div class="notice_id">1</div>
+                <div class="notice_title">
+                  제목
+                </div>
+                <div class="notice_date">시간</div>
+                <div class="notice_view">조회수</div>
+              </div>
+              <div class="line"></div>
+              <div class="notice">
+                <div class="notice_id">1</div>
+                <div class="notice_title">
+                  내이름은 유가람
+                </div>
+                <div class="notice_date">시간</div>
+                <div class="notice_view">조회수</div>
+              </div>
+              <div class="line"></div>
+              <div class="notice">
+                <div class="notice_id">1</div>
+                <div class="notice_title">
+                  내이름은 유가람
+                </div>
+                <div class="notice_date">시간</div>
+                <div class="notice_view">조회수</div>
+              </div>
+              <div class="line"></div>
+              <div class="notice">
+                <div class="notice_id">1</div>
+                <div class="notice_title">
+                  내이름은 유가람
+                </div>
+                <div class="notice_date">시간</div>
+                <div class="notice_view">조회수</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="faq" class="tabcontent">
+          <div class="menu"><p>FAQ</p></div>
+          <div class="menu"><p>자주듣는 질문</p></div>
+          <div class="noticebox">
+            <div class="notice_text">
+              <div>NO</div>
+              <div>제목</div>
+              <div>날짜</div>
+              <div>조회수</div>
+            </div>
+            <div class="notices">
+              <div class="notice">
+                <div class="notice_id">1</div>
+                <div class="notice_title">
+                  내이름은 유가람
+                </div>
+                <div class="notice_datet">시간</div>
+                <div class="notice_view">조회수</div>
+              </div>
+              <div class="line"></div>
+              <div class="notice">
+                <div class="notice_id">1</div>
+                <div class="notice_title">
+                  내이름은 유가람
+                </div>
+                <div class="notice_datet">시간</div>
+                <div class="notice_view">조회수</div>
+              </div>
+              <div class="line"></div>
+              <div class="notice">
+                <div class="notice_id">1</div>
+                <div class="notice_title">
+                  내이름은 유가람
+                </div>
+                <div class="notice_datet">시간</div>
+                <div class="notice_view">조회수</div>
+              </div>
+              <div class="line"></div>
+              <div class="notice">
+                <div class="notice_id">1</div>
+                <div class="notice_title">
+                  내이름은 유가람
+                </div>
+                <div class="notice_datet">시간</div>
+                <div class="notice_view">조회수</div>
+              </div>
+            </div>
+          </div>
+          <div class="menu"><p>질문하기</p></div>
+          <input class ="inputbox" type="text" />
+          <div class = "faqbutton">
+            <button>질문하기</button>
+          </div>
+         
+        </div>
+
+        <div id="customer_service" class="tabcontent">
+          <div class="menu"><p>고객센터</p></div>
+          <div class="csbox">
+            <p>
+              궁금한 사항 / 불편한 사항이 있으시면 아래 연락처로 연락해주시면<br>
+              신속하게 답변해드리겠습니다. 불편을 끼쳐드려 죄송합니다
+            </p>
+            <p>Email : lmsscheduler@gmail.com</p>
+            <p>Phone : 02 - **** - ****</p>
+            <p>Address : 경기도 고양시 항공대학로 ***</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--footer : 병구 담당-->
+    <div id="footer" style="background-color: rgba(16, 60, 180, 0.158)">
+      <br />
+      <div class="container text-center text-md-start mt-5">
+        <!-- 소개, 연락, SNS -->
+        <div class="row mt-3">
+          <!-- 소개 -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <h6 class="text-uppercase fw-bold mb-4">라떼는말이야</h6>
+            <hr class="one" />
+            <p>
+              저희 개강한 대학생은 라떼는말이야 팀이 너무 불편했던
+              한국항공대학교 LMS 시스템을 개선해보고자 만든 사이트입니다.
+            </p>
+          </div>
+
+          <!-- 연락 -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <hr class="one" />
+            <p>경기도 고양시 덕양구 한국항공대학교</p>
+            <p>Latteishorse@gmail.com</p>
+            <p>+ 82 031-****-***</p>
+            <p>+ 82 010-****-****</p>
+          </div>
+
+          <!-- SNS -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <h6 class="text-uppercase fw-bold mb-4">SNS</h6>
+            <hr class="one" />
+            <p>
+              <a target="_blank" href="https://instagram.com"
+                ><i class="fa fa-instagram" aria-hidden="true"></i
+              ></a>
+              instagram
+            </p>
+            <p>
+              <a target="_blank" href="https://facebook.com"
+                ><i class="fa fa-facebook-official" aria-hidden="true"></i
+              ></a>
+              facebook
+            </p>
+            <p>
+              <a target="_blank" href="https://twitter.com"
+                ><i class="fa fa-twitter-square" aria-hidden="true"></i
+              ></a>
+              twitter
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "flex";
+        evt.currentTarget.className += " active";
+      }
+
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+    </script>
+    {% block asd %} {% endblock %}
+  </body>
+</html>

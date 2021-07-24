@@ -1,0 +1,199 @@
+body {
+    background-image: url("../img/ranking.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Nanum Gothic', sans-serif;
+    min-width: 600px;
+    min-height: 450px;
+}
+
+/* header */
+
+header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(150, 150, 150);
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.header_inner {
+    margin: 0 auto;
+    width: 1800px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header_left {
+    display: flex;
+    justify-content: flex-start;
+    width: 33.3%;
+}
+
+.nav {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    margin: 0 20px;
+}
+
+.header_mid {
+    display: flex;
+    justify-content: center;
+    width: 33.3%;
+}
+
+.logo {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.logo_text {
+    text-decoration: none;
+    color: #333;
+    font-size: 26px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: bold;
+}
+
+.header_right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 33.3%;
+}
+
+/* Body */
+
+.contain {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    vertical-align: middle;
+    align-items: center;
+    width: 100%;
+    height: 95vh;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 95%;
+    height: 100%;
+    margin: 50px 0;
+    border-radius: 30px;
+    /* padding: 30px; */
+}
+
+.content_top {
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    width: 50%;
+    height: 20%;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.877);
+}
+
+.user {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: space-evenly;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.content_bottom {
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    width: 50%;
+    height: 75%;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.877);
+}
+
+.rank_type {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+    margin: 30px 0 20px 0;
+    font-weight: bold;
+}
+
+.ranking {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+}
+
+.ranks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    margin: 20px 0;
+}
+
+.ranks p {
+    margin: 0;
+}
+
+.rank_text {
+    width: 33.3%;
+    text-align: center;
+}
+
+.myicon {
+    margin: 0 10px;
+    width: 70px;
+}
+
+.usericon {
+    margin: 0 10px;
+    width: 50px;
+}
+
+.id_text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: flex-start;
+    width: 33.3%;
+}
+
+.id_nav {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 33.3%;
+}
+
+.id_text p {
+    margin: 0;
+}
+
+.time_text {
+    width: 33.3%;
+    text-align: center;
+}
+
+.line {
+    width: 85%;
+    border-bottom: 1px solid rgb(161, 161, 161);
+}
