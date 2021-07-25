@@ -1,11 +1,14 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.utils import timezone
 from .models import *
 from django.http import JsonResponse  
 import requests
 import json
 from lms.views import home
+
+
 # Create your views here.
 
 def kakao_signup(request):
@@ -130,7 +133,7 @@ def manuallogin(request):
         user=auth.authenticate(request,username=username,password=password)
         if user != None:
             auth.login(request,user)
-            return render(request,'home.html')
+            return redirect(home)
         else:
             return render(request,'idLogin.html',{'error':"사용자 이름 혹은 패스워드가 일치하지 않습니다"})
     else:
@@ -150,4 +153,12 @@ def statistic(request):
     return render(request, "statistic.html")
     
 def new(request):
-    return render(request,'home.html')
+    return render(request,'new.html')
+
+# def create(request):
+#     faq=Faq()
+#     faq.user=request.POST.get('user')
+#     faq.title=request.POST.get('faq_title')
+#     faq.body=request.POST.get('faq_body')
+#     faq.save()
+#     return redirect(home)

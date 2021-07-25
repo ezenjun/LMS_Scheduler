@@ -4,3 +4,10 @@ from .models import *
 # Register your models here.
 admin.site.register(Account)
 admin.site.register(Customer)
+admin.site.register(Attendance)
+admin.site.register(Class)
+admin.site.register(Statistics)
+admin.site.register(Priority)
+admin.site.register(Calendercolor)
+admin.site.register(Faq)
+admin.site.register(Notices)
