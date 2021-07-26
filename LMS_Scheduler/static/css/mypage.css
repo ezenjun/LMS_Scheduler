@@ -230,6 +230,9 @@ body {
     border: 1px solid rgb(160, 160, 160);
     padding: 8px;
 }
+.buttons button:hover{
+    background-color: rgb(173, 196, 224);
+}
 
 /* 공지사항 */
 

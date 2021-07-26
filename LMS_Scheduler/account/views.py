@@ -151,6 +151,9 @@ def customize(request):
 
 def statistic(request):
     return render(request, "statistic.html")
+
+def ranking(request):
+    return  render(request, "ranking.html")
     
 def new(request):
     return render(request,'new.html')
