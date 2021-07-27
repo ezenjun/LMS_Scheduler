@@ -69,6 +69,24 @@ function buttonEvt(){
       this.style.color = "red";
       clearInterval(timer);
       starFlag = true;
+      $.ajax({
+        type: 'POST',
+        url: "/lms/test",
+        headers:{
+          'X-CSRFToken' : '{{csrf_token}}'
+        },
+        data: JSON.stringify({'time': time }),
+        dataType: "text",
+        success: function (data) {
+          console.log('성공');
+        },
+        error: function (data) {
+          console.log('실패');
+          console.log(request);
+          console.log(error);
+        }
+    });
+      
       time = 0;
       init();
     }

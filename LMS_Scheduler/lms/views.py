@@ -2,7 +2,11 @@ from django.shortcuts import redirect, render
 from bs4 import BeautifulSoup
 import requests
 from django.contrib.auth.models import AnonymousUser, User
-from account.models import Customer
+from account.models import *
+from datetime import datetime
+import time
+import json
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 def finish(request):
@@ -138,5 +142,21 @@ def home(request):
     if cur_user.is_anonymous:
         print('aaa')
         return redirect('mainLogin')
+    else:
+     return render(request, 'home.html')
+
+@csrf_exempt
+def test(request):
+    if request.is_ajax():
+        #do something
+        request_data = json.loads(request.body)
+        dailytime = time.strftime('%H:%M:%S', time.gmtime(request_data['time']))
+        Statistic = Statistics()
+        Statistic.user = request.user
+        Statistic.daily = dailytime
+        Statistic.date = datetime.now()
+        #Statistic = Statistics(user=request.user, daily = request_data, date = datetime.now())
+        Statistic.save()
+        return render(request, 'home.html')
     else:
      return render(request, 'home.html')

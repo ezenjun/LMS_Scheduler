@@ -118,7 +118,7 @@ def lmsSignup(request):
         lmsId=request.POST['lmsId']
         lmsPwd=request.POST['lmsPwd']
         if lmsPwd==request.POST['lmsPwdCheck']:
-            customer = Customer(user=user, lmsId = lmsId, lmsPwd=lmsPwd)
+            customer = Customer(user=user, lmsId = lmsId, lmsPwd=lmsPwd, name='name', color='#eee', stamp='1', calendarDaystart='0', font = '1', basic='1',language='1')
             customer.save()
             return redirect(home)
         else :

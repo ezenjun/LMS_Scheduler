@@ -139,7 +139,7 @@ header {
 .calendar {
     height: 75vh;
     width: 70%;
-    background-color: rgba(243, 9, 9, 0.616); 
+    background-color: rgba(196, 196, 196, 0.616); 
     border-radius: 30px;
     padding: 10px;
     position: relative;

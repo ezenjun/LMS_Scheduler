@@ -18,7 +18,7 @@ class Customer(models.Model):
     stamp = models.IntegerField()
     calendarDaystart = models.IntegerField()
     font = models.IntegerField()
-    basictype = models.IntegerField()
+    basic = models.IntegerField()
     language = models.IntegerField()
 
 class Attendance(models.Model):
