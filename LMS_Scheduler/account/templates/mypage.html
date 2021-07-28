@@ -191,41 +191,15 @@
               <div>조회수</div>
             </div>
             <div class="notices">
-              <div class="notice">
-                <div class="notice_id">1</div>
-                <div class="notice_title">
-                  제목
+              {% for notice in notices.all %}
+                <div class="notice">
+                  <div class="notice_id">1</div>
+                  <div class="notice_title">{{notice.summary}}</div>
+                  <div class="notice_date">{{notice.notice_date.date}}</div>
+                  <div class="notice_view">{{notice.notice_view}}</div>
                 </div>
-                <div class="notice_date">시간</div>
-                <div class="notice_view">조회수</div>
-              </div>
-              <div class="line"></div>
-              <div class="notice">
-                <div class="notice_id">1</div>
-                <div class="notice_title">
-                  내이름은 유가람
-                </div>
-                <div class="notice_date">시간</div>
-                <div class="notice_view">조회수</div>
-              </div>
-              <div class="line"></div>
-              <div class="notice">
-                <div class="notice_id">1</div>
-                <div class="notice_title">
-                  내이름은 유가람
-                </div>
-                <div class="notice_date">시간</div>
-                <div class="notice_view">조회수</div>
-              </div>
-              <div class="line"></div>
-              <div class="notice">
-                <div class="notice_id">1</div>
-                <div class="notice_title">
-                  내이름은 유가람
-                </div>
-                <div class="notice_date">시간</div>
-                <div class="notice_view">조회수</div>
-              </div>
+                <div class="line"></div>
+              {% endfor %}
             </div>
           </div>
           <div class="menu"><p>자주듣는 질문</p></div>
@@ -237,41 +211,15 @@
               <div>조회수</div>
             </div>
             <div class="notices">
-              <div class="notice">
-                <div class="notice_id">1</div>
-                <div class="notice_title">
-                  내이름은 유가람
-                </div>
-                <div class="notice_datet">시간</div>
-                <div class="notice_view">조회수</div>
-              </div>
-              <div class="line"></div>
-              <div class="notice">
-                <div class="notice_id">1</div>
-                <div class="notice_title">
-                  내이름은 유가람
-                </div>
-                <div class="notice_datet">시간</div>
-                <div class="notice_view">조회수</div>
-              </div>
-              <div class="line"></div>
-              <div class="notice">
-                <div class="notice_id">1</div>
-                <div class="notice_title">
-                  내이름은 유가람
-                </div>
-                <div class="notice_datet">시간</div>
-                <div class="notice_view">조회수</div>
-              </div>
-              <div class="line"></div>
-              <div class="notice">
-                <div class="notice_id">1</div>
-                <div class="notice_title">
-                  내이름은 유가람
-                </div>
-                <div class="notice_datet">시간</div>
-                <div class="notice_view">조회수</div>
-              </div>
+              {% for qna in qnas.all %}
+                  <div class="notice">
+                    <div class="notice_id">1</div>
+                    <div class="notice_title">{{qna.summary}}</div>
+                    <div class="notice_date">{{qna.qna_date.date}}</div>
+                    <div class="notice_view">{{qna.qna_view}}</div>
+                  </div>
+                  <div class="line"></div>
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -285,7 +233,7 @@
               <button>질문하기</button>
             </div>
           </form> -->
-          <form class = "qnaForm" action="" method ="GET">
+          <form class = "qnaForm" action="{% url 'create' %}" method ="GET">
             <p>제목: </p>
             <input class ="inputbox" type="text" name="title">
             <br>
@@ -297,7 +245,6 @@
             <input type="submit" value="제출하기">
         </form>
         </div>
-
         <div id="customer_service" class="tabcontent">
           <div class="menu"><p>고객센터</p></div>
           <div class="csbox">

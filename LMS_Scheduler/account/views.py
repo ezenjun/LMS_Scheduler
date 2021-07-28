@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.utils import timezone
-from account.models import *
+from .models import *
 from django.http import JsonResponse  
 import requests
 import json
@@ -146,8 +146,9 @@ def calendar(request):
 
 def mypage(request):
     user = Customer.objects.get(user = request.user)
-
-    return render(request,'mypage.html', {'user':user})
+    qnas = Qna.objects
+    notices = Notices.objects
+    return render(request,'mypage.html', {'user':user, 'qnas':qnas, 'notices':notices})
 
 def customize(request):
     return render(request, 'customize.html')
@@ -198,3 +199,14 @@ def usertype(request):
         return render(request, 'mypage.html')
     else:
      return render(request, 'mypage.html')
+
+def create(request):
+    qna=Qna()
+    print(request.GET['title'])
+    qna.user = request.user
+    qna.qna_title=request.GET['title']
+    qna.qna_body=request.GET['body']
+    qna.qna_date=timezone.datetime.now()
+    qna.qna_view = 0
+    qna.save()
+    return redirect('mypage')

@@ -26,5 +26,6 @@ urlpatterns = [
     path('',views.logout,name="logout"), # 초기화면 때문에 include 처리 안함
     path('ranking/', views.ranking, name = "ranking"),
 
-    path('usertype', views.usertype, name = "usertype")
+    path('usertype', views.usertype, name = "usertype"),
+    path('mypage/create',views.create,name="create"),
 ]

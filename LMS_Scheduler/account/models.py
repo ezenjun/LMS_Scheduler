@@ -44,15 +44,21 @@ class Priority(models.Model):
 class Calendercolor(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
 
-class Faq(models.Model):
-    faq_no=models.IntegerField()
+class Qna(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    faq_title=models.CharField(max_length=45)
-    faq_date=models.DateTimeField()
-    faq_body=models.CharField(max_length=1000)
+    qna_title=models.CharField(max_length=45)
+    qna_date=models.DateTimeField()
+    qna_body=models.CharField(max_length=1000)
+    qna_view=models.IntegerField()
+    def summary(self):
+        return self.qna_title[:10]
+
 
 
 class Notices(models.Model):
     notice_title=models.CharField(max_length=45)
     notice_date=models.DateTimeField()
     notice_body=models.CharField(max_length=1000)
+    notice_view=models.IntegerField()
+    def summary(self):
+        return self.notice_title[:10]
