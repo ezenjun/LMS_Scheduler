@@ -94,9 +94,6 @@
           <button class="tablinks" onclick="openCity(event, 'usertype')">
             나의 성향
           </button>
-          <button class="tablinks" onclick="openCity(event, 'setting')">
-            설정
-          </button>
           <button class="tablinks" onclick="openCity(event, 'notice')">
             공지사항
           </button>
@@ -116,14 +113,10 @@
               <img src="{% static 'userimage/cat.png'%}" width="80px" />
             </div>
             <div class="info">
-              <div class="user" id="username">이름 : <input type="text" /></div>
-              <div class="user" id="userid">아이디 : <input type="text" /></div>
-              <div class="user" id="userpwd">
-                비밀번호 : <input type="text" />
-              </div>
-              <div class="user" id="userpwdchk">
-                비밀번호 확인 : <input type="text" />
-              </div>
+              <div class="user" id="userid">아이디 : <input type="text" placeholder="{{ user.user }}" /></div>
+              <div class="user" id="userid">LMS 아이디 : <input type="text" placeholder="{{ user.lmsId }}" /></div>
+              <div class="user" id="userpwd">비밀번호 : <input type="text" placeholder="{{ user.lmsPwd }}"/></div>
+              <div class="user" id="userpwdchk"> 비밀번호 확인 : <input type="text" placeholder="{{ user.lmsPwd }}"/></div>
             </div>
             <div class="edit">
               <span
@@ -177,43 +170,12 @@
           <div class="menu"><p>본인의 성향을 골라주세요</p></div>
           <div class="box">
             <div class="lecture">
-              <div>강의 듣기</div>
+              <div>강의 & 과제</div>
               <div class="buttons" id="lecture_type">
-                <button>올라오자마자 바로!</button>
-                <button>늦어도 제출 3일 전에!</button>
-                <button>하루 전날!</button>
-                <button>극한의 타임어택형!</button>
-              </div>
-            </div>
-            <div class="lecture" id="assignmnet_type">
-              <div>과제 하기</div>
-              <div class="buttons">
-                <button>올라오자마자 바로!</button>
-                <button>늦어도 제출 3일 전에!</button>
-                <button>하루 전날!</button>
-                <button>극한의 타임어택형!</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="setting" class="tabcontent">
-          <div class="menu"><p>환경 설정</p></div>
-          <div class="box">
-            <div class="lecture">
-              <div>글꼴 크기</div>
-              <div class="buttons" id="lecture_type">
-                <button>작게</button>
-                <button>보통</button>
-                <button>조금 크게</button>
-                <button>매우 크게</button>
-              </div>
-            </div>
-            <div class="lecture" id="assignmnet_type">
-              <div>언어</div>
-              <div class="buttons">
-                <button>한국어</button>
-                <button>English</button>
+                <button class="btn" id="type1" >올라오자마자 바로!</button>
+                <button class="btn" id="type2" >늦어도 제출 3일 전에!</button>
+                <button class="btn" id="type3" >하루 전날!</button>
+                <button class="btn" id="type4" > 극한의 타임어택형!</button>
               </div>
             </div>
           </div>
@@ -266,10 +228,6 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <div id="faq" class="tabcontent">
-          <div class="menu"><p>FAQ</p></div>
           <div class="menu"><p>자주듣는 질문</p></div>
           <div class="noticebox">
             <div class="notice_text">
@@ -316,12 +274,28 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div id="faq" class="tabcontent">
           <div class="menu"><p>질문하기</p></div>
-          <input class ="inputbox" type="text" />
-          <div class = "faqbutton">
-            <button>질문하기</button>
-          </div>
-         
+          <!-- <form class="qnaForm" action="">
+            <div class = "faqTitle">제목: <br><input class ="inputbox" type="text" /></div>
+            <div class = "faqBody">내용: <br><input class ="inputbox" type="text" /></div>
+            <div class = "faqbutton">
+              <button>질문하기</button>
+            </div>
+          </form> -->
+          <form class = "qnaForm" action="" method ="GET">
+            <p>제목: </p>
+            <input class ="inputbox" type="text" name="title">
+            <br>
+
+            <p>본문: </p>
+            <textarea name="body" cols="80" rows="10"></textarea>
+
+            <br>
+            <input type="submit" value="제출하기">
+        </form>
         </div>
 
         <div id="customer_service" class="tabcontent">
@@ -392,24 +366,7 @@
       </div>
     </div>
 
-    <script>
-      function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "flex";
-        evt.currentTarget.className += " active";
-      }
-
-      // Get the element with id="defaultOpen" and click on it
-      document.getElementById("defaultOpen").click();
-    </script>
+    <script type="text/javascript" src="{% static 'js/mypage.js' %}"></script>
     {% block asd %} {% endblock %}
   </body>
 </html>

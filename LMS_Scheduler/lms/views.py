@@ -150,13 +150,30 @@ def test(request):
     if request.is_ajax():
         #do something
         request_data = json.loads(request.body)
-        dailytime = time.strftime('%H:%M:%S', time.gmtime(request_data['time']))
-        Statistic = Statistics()
-        Statistic.user = request.user
-        Statistic.daily = dailytime
-        Statistic.date = datetime.now()
-        #Statistic = Statistics(user=request.user, daily = request_data, date = datetime.now())
-        Statistic.save()
+        dailytime = request_data['time']
+        print(dailytime)
+        #dailytime = time.strftime('%H:%M:%S', time.gmtime(request_data['time']))
+
+        try:
+            id = Statistics.objects.filter(user = request.user)
+            date = Statistics.objects.filter(date = datetime.now())
+            curexits = Statistics.objects.get(user = request.user, date = datetime.now())
+        except Statistics.DoesNotExist:
+            id = None
+            date = None
+            curexits = None
+        print(curexits)
+        if id != None:
+            if date != None : #오늘 날짜 존재
+                curexits.daily += dailytime
+                curexits.save()
+            else: #오늘 날짜 미존재
+                Statistic = Statistics(user=request.user, daily = dailytime, date = datetime.now())
+                Statistic.save()
+        else:
+            Statistic = Statistics(user=request.user, daily = dailytime, date = datetime.now())
+            Statistic.save()
+        
         return render(request, 'home.html')
     else:
      return render(request, 'home.html')

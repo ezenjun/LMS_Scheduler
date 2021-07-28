@@ -2,11 +2,12 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.utils import timezone
-from .models import *
+from account.models import *
 from django.http import JsonResponse  
 import requests
 import json
 from lms.views import home
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -144,7 +145,9 @@ def calendar(request):
 
 
 def mypage(request):
-    return render(request,'mypage.html')
+    user = Customer.objects.get(user = request.user)
+
+    return render(request,'mypage.html', {'user':user})
 
 def customize(request):
     return render(request, 'customize.html')
@@ -165,3 +168,33 @@ def new(request):
 #     faq.body=request.POST.get('faq_body')
 #     faq.save()
 #     return redirect(home)
+
+
+@csrf_exempt
+def usertype(request):
+    if request.is_ajax():
+        #do something
+        request_data = json.loads(request.body)
+        inputtype = request_data['usertype']
+        print(inputtype)
+        #dailytime = time.strftime('%H:%M:%S', time.gmtime(request_data['time']))
+
+        try:
+            curexits = Priority.objects.get(user = request.user)
+            print('try', curexits)
+        except Priority.DoesNotExist:
+            curexits = None
+            print('execp', curexits)
+            
+
+        print('test', curexits)    
+        if curexits != None:
+            curexits.usertype = inputtype
+            curexits.save() 
+        else:
+            newPriority = Priority(user=request.user, usertype = inputtype)
+            newPriority.save()
+        
+        return render(request, 'mypage.html')
+    else:
+     return render(request, 'mypage.html')

@@ -32,13 +32,14 @@ class Class(models.Model):
 
 class Statistics(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
-    daily=models.TimeField()
+    daily=models.IntegerField()
     date=models.DateField()
 
 class Priority(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
-    myclass=models.ForeignKey(Class, on_delete=models.CASCADE)
-    rank=models.IntegerField()
+    # myclass=models.ForeignKey(Class, on_delete=models.CASCADE)
+    # rank=models.IntegerField()
+    usertype = models.IntegerField()
 
 class Calendercolor(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)

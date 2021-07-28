@@ -230,9 +230,11 @@ body {
     border: 1px solid rgb(160, 160, 160);
     padding: 8px;
 }
-.buttons button:hover{
-    background-color: rgb(173, 196, 224);
-}
+
+.active, .btn:hover {
+    background: rgb(177, 177, 177);
+    color: white;
+  }
 
 /* 공지사항 */
 
@@ -272,19 +274,35 @@ body {
     width: 100%;
     border-bottom: 1px solid rgb(161, 161, 161);
 }
+.qnaForm{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width:70%;
+}
+.faqTitle,
+.faqBody{
+    display: flex;
+    width:100%;
+}
 
 .inputbox {
     display: flex;
     border: 1px solid #ccc;
-    height: 80%;
-    width: 70%;
-    padding: 35px;
+    width: 100%;
+    padding: 10px;
     justify-content: space-around;
+}
+
+textarea{
+    width: 100%;
+    height: 50%;
+    border: 1px solid #ccc;
 }
 
 .faqbutton {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     width: 70%;
     margin: 10px;
 }

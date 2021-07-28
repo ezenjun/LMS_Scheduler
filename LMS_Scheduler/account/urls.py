@@ -24,5 +24,7 @@ urlpatterns = [
     path('statistic/', views.statistic, name = "statistic"),
     path('mypage/',views.mypage,name="mypage"),
     path('',views.logout,name="logout"), # 초기화면 때문에 include 처리 안함
-    path('ranking', views.ranking, name = "ranking"),
+    path('ranking/', views.ranking, name = "ranking"),
+
+    path('usertype', views.usertype, name = "usertype")
 ]
