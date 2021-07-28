@@ -207,6 +207,7 @@ def create(request):
     qna.qna_title=request.GET['title']
     qna.qna_body=request.GET['body']
     qna.qna_date=timezone.datetime.now()
+    qna.qna_answer = ""
     qna.qna_view = 0
     qna.save()
     return redirect('mypage')

@@ -49,6 +49,7 @@ class Qna(models.Model):
     qna_title=models.CharField(max_length=45)
     qna_date=models.DateTimeField()
     qna_body=models.CharField(max_length=1000)
+    qna_answer=models.CharField(max_length=1000)
     qna_view=models.IntegerField()
     def summary(self):
         return self.qna_title[:10]
