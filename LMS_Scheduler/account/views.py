@@ -144,8 +144,9 @@ def calendar(request):
 
 
 def mypage(request):
-    user = Customer.objects.get(user = request.user)
-    myid = str(user.user)
+    user=request.user
+    lmsuser = Customer.objects.get(user = user)
+    myid = str(lmsuser.user)
     qnas = Qna.objects
     if len(Qna.objects.filter(user = request.user)) !=0:
         myqnas= Qna.objects.filter(user = request.user)
@@ -155,7 +156,7 @@ def mypage(request):
         print(myqnas)
     
     notices = Notices.objects
-    return render(request,'mypage.html', {'user':user, 'qnas':qnas,'myqnas':myqnas, 'notices':notices, 'myid':myid})
+    return render(request,'mypage.html', {'user':user,'lmsuser':lmsuser, 'qnas':qnas,'myqnas':myqnas, 'notices':notices, 'myid':myid})
 
 def customize(request):
     return render(request, 'customize.html')
@@ -220,22 +221,33 @@ def create(request):
     return redirect('mypage')
 
 def edit(request):
-    user=request.user
-    lmsuser = Customer.objects.get(user = request.user)
-
-    password=request.POST['userpwd']
-    pwdcheck = request.POST['userpwdchk']
-    lmsPwd = request.POST['lmsPwd']
-    lmsPwdchk = request.POST['lmsPwdchk']
-
-    if password == pwdcheck & lmsPwd == lmsPwdchk:
-        user.password=request.POST['userpwd']
-        lmsuser.lmsId = request.POST['lmsId']
-        lmsuser.lmsPwd = request.POST['lmsPwd']
-        user.save()
-        lmsuser.save()
-    
-    
+    if request.method=="POST":
+        user=request.user
+        print("edit",user)
+        lmsuser = Customer.objects.get(user = user)
+        print("editlmsuser", lmsuser)
+        password=request.POST['userpwd']
+        print("password",password)
+        pwdcheck = request.POST['userpwdchk']
+        print("pwdcheck",pwdcheck)
+        lmsPwd = request.POST['lmspwd']
+        print("lmsPwd",lmsPwd)
+        lmsPwdchk = request.POST['lmspwdchk']
+        print("lmsPwdchk",lmsPwdchk)
+        if (password == pwdcheck) & (lmsPwd == lmsPwdchk):
+  
+            user.password=request.POST['userpwd']
+            print("edit",user)
+            print("user.password",user.password)
+            lmsuser.lmsId = request.POST['lmsId']
+            print("edit",user)
+            print("lmsuser.lmsId",lmsuser.lmsId)
+            lmsuser.lmsPwd =request.POST['lmspwd']
+            print("edit",user)
+            print("lmsuser.lmsPwd",lmsuser.lmsPwd)
+            user.save()
+            lmsuser.save()
+ 
     return redirect('mypage')
 
 def qnaAnswer(request):

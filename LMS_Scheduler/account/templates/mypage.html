@@ -116,15 +116,19 @@
             </div>
             <form class = "edit" method="POST" action="{%url 'edit' %}">
               {% csrf_token %}
+                    {% if error %}
+                        <p>{{error}}</p>
+                        <br>
+                    {% endif %}}
               <div class="info">
-                <div class="user" id="userid">아이디 : <input  name = "userid" type="text" placeholder="{{ user.user}}" /></div>
+                <div class="user" id="userid">아이디 : <input  name = "userid" type="text" placeholder="{{ user.username}}" /></div>
                 {% if "kakao" not in myid %}
-                  <div class="user" id="userpwd">비밀번호 : <input name = "userpwd" type="text" placeholder="{{ user.password }}"/></div>
-                  <div class="user" id="userpwdchk">비밀번호 확인 : <input name = "userpwdchk" type="text" placeholder="{{ user.password }}"/></div>
+                  <div class="user" id="userpwd">비밀번호 : <input name = "userpwd" type="password" placeholder="{{ user.password }}"/></div>
+                  <div class="user" id="userpwdchk">비밀번호 확인 : <input name = "userpwdchk" type="password" placeholder="{{ user.password }}"/></div>
                 {% endif %} 
-                <div class="user" id="lmsId">LMS 아이디 : <input name = "lmsId" type="text" placeholder="{{ user.lmsId }}" /></div>
-                <div class="user" id="lmsPwd">LMS 비밀번호 : <input name = "lmsPwd" type="text" placeholder="{{ user.lmsPwd }}"/></div>
-                <div class="user" id="lmspwdchk">LMS 비밀번호 확인 : <input name = "lmspwdchk" type="text" placeholder="{{ user.lmsPwd }}"/></div>
+                <div class="user" id="lmsId">LMS 아이디 : <input name = "lmsId" type="text" placeholder="{{ lmsuser.lmsId }}" /></div>
+                <div class="user" id="lmsPwd">LMS 비밀번호 : <input name = "lmspwd" type="password" placeholder="{{ lmsuser.lmsPwd }}"/></div>
+                <div class="user" id="lmspwdchk">LMS 비밀번호 확인 : <input name = "lmspwdchk" type="password" placeholder="{{ lmsuser.lmsPwd }}"/></div>
               </div>
               <div class="edit">
                 <input class = "iconify" type="submit" value="수정하기">
