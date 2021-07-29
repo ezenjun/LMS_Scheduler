@@ -28,4 +28,5 @@ urlpatterns = [
 
     path('usertype', views.usertype, name = "usertype"),
     path('mypage/create',views.create,name="create"),
+    path('qnaAnswer/',views.qnaAnswer,name="qnaAnswer"),
 ]

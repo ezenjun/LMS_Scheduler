@@ -37,7 +37,7 @@ def oauth(request):
         token = response.json().get('access_token')
         user_info_response = requests.get('https://kapi.kakao.com/v2/user/me', headers={'Authorization':f'Bearer {token}'})
         text = json.loads(user_info_response.text)
-        kakaoId = text['id']
+        kakaoId = "kakao"+str(text['id'])
         if User.objects.filter(username=kakaoId).exists():
             return redirect(mainLogin)
         else: 
@@ -72,8 +72,7 @@ def kakoredirect(request):
         token = response.json().get('access_token')
         user_info_response = requests.get('https://kapi.kakao.com/v2/user/me', headers={'Authorization':f'Bearer {token}'})
         text = json.loads(user_info_response.text)
-        kakaoId = text['id']
-        password = "has8830!"
+        kakaoId = "kakao"+str(text['id'])
         user=auth.authenticate(request,username=kakaoId,password='0')
         print("user - ", user)
         if User.objects.filter(username=kakaoId).exists():
@@ -146,9 +145,17 @@ def calendar(request):
 
 def mypage(request):
     user = Customer.objects.get(user = request.user)
+    myid = str(user.user)
     qnas = Qna.objects
+    if len(Qna.objects.filter(user = request.user)) !=0:
+        myqnas= Qna.objects.filter(user = request.user)
+        print(myqnas)
+    else:
+        myqnas = None
+        print(myqnas)
+    
     notices = Notices.objects
-    return render(request,'mypage.html', {'user':user, 'qnas':qnas, 'notices':notices})
+    return render(request,'mypage.html', {'user':user, 'qnas':qnas,'myqnas':myqnas, 'notices':notices, 'myid':myid})
 
 def customize(request):
     return render(request, 'customize.html')
@@ -211,3 +218,7 @@ def create(request):
     qna.qna_view = 0
     qna.save()
     return redirect('mypage')
+
+def qnaAnswer(request):
+
+    return render(request,'qnaAnswer.html')

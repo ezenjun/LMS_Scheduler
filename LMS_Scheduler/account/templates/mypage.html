@@ -97,23 +97,28 @@
           <button class="tablinks" onclick="openCity(event, 'notice')">
             공지사항
           </button>
-          <button class="tablinks" onclick="openCity(event, 'faq')">FAQ</button>
-          <button
-            class="tablinks"
-            onclick="openCity(event, 'customer_service')"
-          >
+          <button class="tablinks" onclick="openCity(event, 'qna')">
+            Q&A
+          </button>
+          <button class="tablinks" onclick="openCity(event, 'answer')">
+            답변
+          </button>
+          <button class="tablinks" onclick="openCity(event, 'customer_service')">
             고객센터
           </button>
         </div>
 
-        <div id="userinfo" class="tabcontent">
+        <div id="userinfo" class="tabcontent scrollableContent">
           <div class="menu"><p>회원정보 수정</p></div>
           <div class="box">
             <div class="usericon">
               <img src="{% static 'userimage/cat.png'%}" width="80px" />
             </div>
             <div class="info">
-              <div class="user" id="userid">아이디 : <input type="text" placeholder="{{ user.user }}" /></div>
+              <div class="user" id="userid">아이디 : <input type="text" placeholder="{{ user.user}}" /></div>
+              {% if "kakao" not in myid %}
+                <div class="user" id="userpwd">비밀번호 : <input type="text" placeholder="{{ user.password }}"/></div>
+              {% endif %} 
               <div class="user" id="userid">LMS 아이디 : <input type="text" placeholder="{{ user.lmsId }}" /></div>
               <div class="user" id="userpwd">비밀번호 : <input type="text" placeholder="{{ user.lmsPwd }}"/></div>
               <div class="user" id="userpwdchk"> 비밀번호 확인 : <input type="text" placeholder="{{ user.lmsPwd }}"/></div>
@@ -129,7 +134,7 @@
           </div>
         </div>
 
-        <div id="priority" class="tabcontent">
+        <div id="priority" class="tabcontent scrollableContent">
           <div class="menu"><p>우선 순위</p></div>
           <div class="box">
             <div class="priority_list">
@@ -166,7 +171,7 @@
             </ul>
           </div>
         </div>
-        <div id="usertype" class="tabcontent">
+        <div id="usertype" class="tabcontent scrollableContent">
           <div class="menu"><p>본인의 성향을 골라주세요</p></div>
           <div class="box">
             <div class="lecture">
@@ -181,7 +186,7 @@
           </div>
         </div>
 
-        <div id="notice" class="tabcontent">
+        <div id="notice" class="tabcontent scrollableContent">
           <div class="menu"><p>공지사항</p></div>
           <div class="noticebox">
             <div class="notice_text">
@@ -192,39 +197,51 @@
             </div>
             <div class="notices">
               {% for notice in notices.all %}
-                <div class="notice">
+              <button class="accordion">{{notice.notice_title}}</button>
+              <div class="panel">
+                <p>{{notice.notice_body}}</p>
+              </div>
+                <!-- <div class="notice">
                   <div class="notice_id">1</div>
-                  <div class="notice_title">{{notice.summary}}</div>
-                  <div class="notice_date">{{notice.notice_date.date}}</div>
-                  <div class="notice_view">{{notice.notice_view}}</div>
+                  <div class="notice_title"><a href="{% url 'qnaAnswer' %}">{{qna.qna_title}}</a></div>
+                  <div class="notice_date">{{qna.qna_date.date}}</div>
+                  <div class="notice_view">{{qna.qna_view}}</div>
                 </div>
-                <div class="line"></div>
-              {% endfor %}
+                <div class="line"></div> -->
+            {% endfor %}
             </div>
           </div>
           <div class="menu"><p>자주듣는 질문</p></div>
           <div class="noticebox">
             <div class="notice_text">
-              <div>NO</div>
+              <!-- <div>NO</div>
               <div>제목</div>
               <div>날짜</div>
-              <div>조회수</div>
+              <div>조회수</div> -->
             </div>
             <div class="notices">
               {% for qna in qnas.all %}
-                  <div class="notice">
+                <button class="accordion">{{qna.qna_title}}</button>
+                <div class="panel">
+                  <p>{{qna.qna_answer}}</p>
+                </div>
+                  <!-- <div class="notice">
                     <div class="notice_id">1</div>
-                    <div class="notice_title">{{qna.qna_answer}}</div>
+                    <div class="notice_title"><a href="{% url 'qnaAnswer' %}">{{qna.qna_title}}</a></div>
                     <div class="notice_date">{{qna.qna_date.date}}</div>
                     <div class="notice_view">{{qna.qna_view}}</div>
                   </div>
-                  <div class="line"></div>
+                  <div class="line"></div> -->
               {% endfor %}
             </div>
+
+
+
+        
           </div>
         </div>
 
-        <div id="faq" class="tabcontent">
+        <div id="qna" class="tabcontent scrollableContent">
           <div class="menu"><p>질문하기</p></div>
           <!-- <form class="qnaForm" action="">
             <div class = "faqTitle">제목: <br><input class ="inputbox" type="text" /></div>
@@ -245,7 +262,26 @@
             <input type="submit" value="제출하기">
         </form>
         </div>
-        <div id="customer_service" class="tabcontent">
+        <div id="answer" class="tabcontent scrollableContent">
+          <div class="menu"><p>답변</p></div>
+          <div class="noticebox">
+
+            <div class="notices">
+              {% if myqnas.all != None %}
+                {% for myqna in myqnas.all %}
+                  <button class="accordion">{{myqna.qna_title}}</button>
+                  <div class="panel">
+                    <p>{{myqna.qna_answer}}</p>
+                  </div>
+                {% endfor %}
+              {% else %}
+                  <p>작성된 질문이 없습니다.</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div id="customer_service" class="tabcontent scrollableContent">
           <div class="menu"><p>고객센터</p></div>
           <div class="csbox">
             <p>
