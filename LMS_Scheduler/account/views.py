@@ -219,6 +219,25 @@ def create(request):
     qna.save()
     return redirect('mypage')
 
+def edit(request):
+    user=request.user
+    lmsuser = Customer.objects.get(user = request.user)
+
+    password=request.POST['userpwd']
+    pwdcheck = request.POST['userpwdchk']
+    lmsPwd = request.POST['lmsPwd']
+    lmsPwdchk = request.POST['lmsPwdchk']
+
+    if password == pwdcheck & lmsPwd == lmsPwdchk:
+        user.password=request.POST['userpwd']
+        lmsuser.lmsId = request.POST['lmsId']
+        lmsuser.lmsPwd = request.POST['lmsPwd']
+        user.save()
+        lmsuser.save()
+    
+    
+    return redirect('mypage')
+
 def qnaAnswer(request):
 
     return render(request,'qnaAnswer.html')

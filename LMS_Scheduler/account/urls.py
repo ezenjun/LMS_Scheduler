@@ -27,6 +27,7 @@ urlpatterns = [
     path('ranking/', views.ranking, name = "ranking"),
 
     path('usertype', views.usertype, name = "usertype"),
-    path('mypage/create',views.create,name="create"),
-    path('qnaAnswer/',views.qnaAnswer,name="qnaAnswer"),
+    path('mypage/create',views.create,name ="create"),
+    path('mypage/edit', views.edit, name = "edit"),
+    path('qnaAnswer/',views.qnaAnswer,name ="qnaAnswer"),
 ]
