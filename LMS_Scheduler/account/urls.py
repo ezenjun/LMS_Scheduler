@@ -30,4 +30,5 @@ urlpatterns = [
     path('mypage/create',views.create,name ="create"),
     path('mypage/edit', views.edit, name = "edit"),
     path('qnaAnswer/',views.qnaAnswer,name ="qnaAnswer"),
+    path('calendar/checkin', views.checkin, name = "checkin"),
 ]

@@ -242,5 +242,27 @@ def edit(request):
     return redirect('mypage')
 
 def qnaAnswer(request):
-
     return render(request,'qnaAnswer.html')
+
+@csrf_exempt
+def checkin(request):
+    if request.is_ajax():
+        #do something
+        request_data = json.loads(request.body)
+        checkin = request_data['checkin']
+        print(checkin)
+        if checkin:
+            try:
+                curexits = Attendance.objects.get(user = request.user)
+                print('try', curexits)
+            except Attendance.DoesNotExist:
+                curexits = None
+
+            today = timezone.datetime.now()   
+            if curexits == None:
+                newAttendance = Attendance(user=request.user, attendance = today)
+                newAttendance.save()
+        
+        return render(request, "calendar.html")
+    else:
+        return render(request, "calendar.html")

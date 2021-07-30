@@ -266,8 +266,10 @@ header {
     border-radius: 8px;
 }
 
-.calendar-days div.curr-date span {
-    display: none;
+.calendar-days div.curr-date div.usericon {
+    background: url("../userimage/cat.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .month-picker {

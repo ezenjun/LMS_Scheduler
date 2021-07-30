@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
+  {% load static %}
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <title>Calendar</title>
   </head>
   <body>
@@ -48,8 +51,8 @@
           <div class="top_left" id="customizing">
             <a href="{% url 'customize' %}">커스터마이징</a>
           </div>
-          <div class="top_center" id="date">
-            <a href="">날짜</a>
+          <div class="top_center" id="checkin">
+            <button id="checkinbtn">출석체크하기!</button>
           </div>
           <div class="top_right">
             <div class="analysis">
@@ -64,7 +67,7 @@
         <div class="content_bottom light">
           <div class="calendar">
             <div class="calendar-header">
-              <span class="month-picker" id="month-picker">February</span>
+              <span class="month-picker" id="month-picker"></span>
               <div class="year-picker">
                 <span class="year-change" id="prev-year">
                   <pre><</pre>

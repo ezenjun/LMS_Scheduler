@@ -1,9 +1,44 @@
+$(document).ready(function () {
+    buttonEvt();
+});
+
+let checkin = false;
+function buttonEvt() {
+    $("#checkinbtn").click(function () {
+        checkin = true;
+        alert("출석하셨습니다");
+        let today = document.getElementsByClassName('curr-date');
+        today.innerHTML += `<div class = "usericon"></div>`;
+        console.log(today[0])
+        $.ajax({
+            type: 'POST',
+            url: "/account/calendar/checkin",
+            headers: {
+                'X-CSRFToken': '{{csrf_token}}'
+            },
+            data: JSON.stringify({ 'checkin': checkin }),
+            dataType: "text",
+            success: function (data) {
+                console.log('성공');
+            },
+            error: function (data) {
+                console.log('실패');
+                console.log(request);
+                console.log(error);
+            }
+        });
+
+    });
+
+}
+
+
 let calendar = document.querySelector('.calendar')
 
 const month_names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 isLeapYear = (year) => {
-    return (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) || (year % 100 === 0 && year % 400 ===0)
+    return (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) || (year % 100 === 0 && year % 400 === 0)
 }
 
 getFebDays = (year) => {
@@ -28,7 +63,7 @@ generateCalendar = (month, year) => {
     calendar_header_year.innerHTML = year
 
     // get first day of month
-    
+
     let first_day = new Date(year, month, 1)
 
     for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
@@ -42,6 +77,7 @@ generateCalendar = (month, year) => {
             //                 <span></span>`
             if (i - first_day.getDay() + 1 === currDate.getDate() && year === currDate.getFullYear() && month === currDate.getMonth()) {
                 day.classList.add('curr-date')
+                // day.innerHTML += `<div class = "usericon"></div>`
             }
         }
         calendar_days.appendChild(day)
@@ -69,8 +105,8 @@ month_picker.onclick = () => {
 
 let currDate = new Date()
 
-let curr_month = {value: currDate.getMonth()}
-let curr_year = {value: currDate.getFullYear()}
+let curr_month = { value: currDate.getMonth() }
+let curr_year = { value: currDate.getFullYear() }
 
 generateCalendar(curr_month.value, curr_year.value)
 
@@ -84,9 +120,8 @@ document.querySelector('#next-year').onclick = () => {
     generateCalendar(curr_month.value, curr_year.value)
 }
 
-let dark_mode_toggle = document.querySelector('.dark-mode-switch')
 
-dark_mode_toggle.onclick = () => {
-    document.querySelector('body').classList.toggle('light')
-    document.querySelector('body').classList.toggle('dark')
-}
+
+
+
+
