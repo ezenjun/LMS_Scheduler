@@ -223,31 +223,22 @@ def create(request):
 def edit(request):
     if request.method=="POST":
         user=request.user
-        print("edit",user)
         lmsuser = Customer.objects.get(user = user)
-        print("editlmsuser", lmsuser)
         password=request.POST['userpwd']
-        print("password",password)
         pwdcheck = request.POST['userpwdchk']
-        print("pwdcheck",pwdcheck)
+        lmsId = request.POST['lmsId']
         lmsPwd = request.POST['lmspwd']
-        print("lmsPwd",lmsPwd)
         lmsPwdchk = request.POST['lmspwdchk']
-        print("lmsPwdchk",lmsPwdchk)
+
         if (password == pwdcheck) & (lmsPwd == lmsPwdchk):
-  
-            user.password=request.POST['userpwd']
-            print("edit",user)
-            print("user.password",user.password)
-            lmsuser.lmsId = request.POST['lmsId']
-            print("edit",user)
-            print("lmsuser.lmsId",lmsuser.lmsId)
-            lmsuser.lmsPwd =request.POST['lmspwd']
-            print("edit",user)
-            print("lmsuser.lmsPwd",lmsuser.lmsPwd)
+            user.set_password(password)
+            lmsuser.lmsId = lmsId
+            lmsuser.lmsPwd = lmsPwd
             user.save()
             lmsuser.save()
- 
+            auth.login(request,user)
+            return redirect('mypage')
+
     return redirect('mypage')
 
 def qnaAnswer(request):
