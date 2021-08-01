@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
+import datetime 
 from django.contrib import auth
 from django.utils import timezone
 from .models import *
@@ -253,7 +254,9 @@ def checkin(request):
         checkin = request_data['checkin']
         print(checkin)
         if checkin:
-            today = timezone.datetime.now()  
+            
+            today = datetime.date.today()
+            print(today)
             try:
                 usercheckin = Attendance.objects.get(user = request.user, attendance = today)
                 print('try', usercheckin)

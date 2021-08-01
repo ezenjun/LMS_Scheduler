@@ -266,7 +266,7 @@ header {
     border-radius: 8px;
 }
 
-.calendar-days div.curr-date div.usericon {
+.usericon {
     background: url("../userimage/cat.png");
     background-size: contain;
     background-repeat: no-repeat;

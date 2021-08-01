@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.base import ModelState
 from django.db.models.deletion import Collector
 from django.db.models.fields import DateTimeField
 
@@ -23,7 +24,7 @@ class Customer(models.Model):
 
 class Attendance(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
-    attendance=models.DateTimeField()
+    attendance=models.DateField()
 
 class Class(models.Model):
     myclass:models.IntegerField()
