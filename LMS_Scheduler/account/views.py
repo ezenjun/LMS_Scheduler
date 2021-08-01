@@ -140,7 +140,8 @@ def manuallogin(request):
         return render(request,'idLogin.html')
 
 def calendar(request):
-    return render(request,'calendar.html')
+    usercheckins = Attendance.objects.filter(user = request.user)
+    return render(request,'calendar.html', {'usercheckins': usercheckins})
 
 
 def mypage(request):
@@ -252,17 +253,18 @@ def checkin(request):
         checkin = request_data['checkin']
         print(checkin)
         if checkin:
+            today = timezone.datetime.now()  
             try:
-                curexits = Attendance.objects.get(user = request.user)
-                print('try', curexits)
+                usercheckin = Attendance.objects.get(user = request.user, attendance = today)
+                print('try', usercheckin)
             except Attendance.DoesNotExist:
-                curexits = None
+                usercheckin = None
 
-            today = timezone.datetime.now()   
-            if curexits == None:
+
+            if usercheckin == None:
                 newAttendance = Attendance(user=request.user, attendance = today)
                 newAttendance.save()
-        
-        return render(request, "calendar.html")
+        usercheckins = Attendance.objects.filter(user = request.user)
+        return render(request, "calendar.html", {'usercheckins': usercheckins})
     else:
         return render(request, "calendar.html")

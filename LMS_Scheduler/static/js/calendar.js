@@ -7,9 +7,9 @@ function buttonEvt() {
     $("#checkinbtn").click(function () {
         checkin = true;
         alert("출석하셨습니다");
-        let today = document.getElementsByClassName('curr-date');
-        today.innerHTML += `<div class = "usericon"></div>`;
-        console.log(today[0])
+        // let today = document.getElementsByClassName('curr-date');
+        // today.innerHTML += `<img src="{% static 'userimage/cat.png' %}" width="40px" /> `;
+        // console.log(today)
         $.ajax({
             type: 'POST',
             url: "/account/calendar/checkin",
@@ -29,8 +29,7 @@ function buttonEvt() {
         });
 
     });
-
-}
+};
 
 
 let calendar = document.querySelector('.calendar')
@@ -77,7 +76,7 @@ generateCalendar = (month, year) => {
             //                 <span></span>`
             if (i - first_day.getDay() + 1 === currDate.getDate() && year === currDate.getFullYear() && month === currDate.getMonth()) {
                 day.classList.add('curr-date')
-                // day.innerHTML += `<div class = "usericon"></div>`
+                day.innerHTML += `<div class = "usericon"></div>`
             }
         }
         calendar_days.appendChild(day)
