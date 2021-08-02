@@ -66,7 +66,7 @@
             <div class = "today">Today</div>
             <div class = "task_container">
                 <p class = "arrows"><i class="arrow left"></i></p>
-                <div class = "day_box">
+                <!-- <div class = "day_box">
                     <div class = "day">월</div>
                     <div class="lecture">
                         <p>강의</p>
@@ -85,8 +85,8 @@
                             <li>테니스 출석과제</li>
                         </ul>
                     </div>
-                </div>
-                <div class = "day_box">
+                </div> -->
+                <!-- <div class = "day_box">
                     <div class = "day">화</div>
                     <div class="lecture">
                         <p>강의</p>
@@ -167,7 +167,7 @@
                             <li><a class = "green" href="">Dynamic Programming</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
                 <p class = "arrows"><i class="arrow right"></i></p>
             </div>
         </div>  
@@ -209,7 +209,105 @@
         </div>
     </div>
     <script type="text/javascript" src="{% static 'js/stopwatch.js' %}"></script>
+    <script>
+        var taskcontainer = document.getElementsByClassName("task_container");
+        var days=['월', '화', '수', '목', '금'];
+        let lectures = [
+            {% for userlecture in userlectures %} {
+                vod: "{{ userlecture.body.vod }}",
+                vod_link: "{{userlecture.body.vod_link}}",
+                vod_duedate: "{{userlecture.body.vod_duedate}}",
+                assignment_name: "{{ userlecture.body.assignment_name }}",
+                assignment_link: "{{ userlecture.body.assignment_link }}",
+                assignment_duedate: "{{ userlecture.body.assignment_duedate }}",
+                link_name: "{{userlecture.body.link_name}}",
+                url_link: "{{userlecture.body.url_link}}",
+                quiz_name: "{{userlecture.body.quiz_name}}",
+                quiz_link: "{{userlecture.body.quiz_link}}",
+            },
+            {% endfor %}
+        ];
+        for(var i=0; i<10; i+=2){
+            taskcontainer[0].innerHTML += 
+            `<div class = "day_box">
+                <div class = "day">`+days[i/2]+`</div>
+                <div class="lecture">
+                    <p>강의</p>
+                    <ul class ="list">
+                    </ul>
+                </div>
+                <div class = "border"></div>
+                <div class="assignment">
+                    <p>과제/퀴즈</p>
+                    <ul class ="list">
+                    </ul>
+                </div>
+            </div>
+            `
+            var ul = document.getElementsByClassName("list");
+            for(var j=0; j<lectures.length;j++){
+                var lecture_li = document.createElement("li");
+                var assignment_li = document.createElement("li");
+                if(lectures[j].vod != ''){
+                    lecture_li.appendChild(document.createTextNode(lectures[j].vod));
+                    ul[i].appendChild(lecture_li);
+                }
+                // if(lectures[j].vod_link != ''){
+                //     lecture_li.appendChild(document.createTextNode(lectures[j].vod_link));
+                //     ul[i].appendChild(lecture_li);
+                // }
+                if(lectures[j].vod_duedate != ''){
+                    lecture_li.appendChild(document.createTextNode(lectures[j].vod_duedate));
+                    ul[i].appendChild(lecture_li);
+                }
+                if(lectures[j].link_name != ''){
+                    lecture_li.appendChild(document.createTextNode(lectures[j].link_name));
+                    ul[i].appendChild(lecture_li);
+                }
+                // if(lectures[j].url_link != ''){
+                //     lecture_li.appendChild(document.createTextNode(lectures[j].url_link));
+                //     ul[i].appendChild(lecture_li);
+                // }
+                //////////////////////////////////////////////////////////////////////////////////////
+                if(lectures[j].assignment_name != ''){
+                    assignment_li.appendChild(document.createTextNode(lectures[j].assignment_name));
+                    ul[i+1].appendChild(assignment_li);
+                }
+                // if(lectures[j].assignment_link != ''){
+                //     assignment_li.appendChild(document.createTextNode(lectures[j].assignment_link));
+                //     ul[i+1].appendChild(assignment_li);
+                // }
+                if(lectures[j].assignment_duedate != ''){
+                    assignment_li.appendChild(document.createTextNode(lectures[j].assignment_duedate));
+                    ul[i+1].appendChild(assignment_li);
+                }
+                if(lectures[j].assignment_quiz_name != undefined){
+                    assignment_li.appendChild(document.createTextNode(lectures[j].assignment_quiz_name));
+                    ul[i+1].appendChild(assignment_li);
+                }
+                // if(lectures[j].assignment_quiz_link != ''){
+                //     assignment_li.appendChild(document.createTextNode(lectures[j].assignment_quiz_link));
+                //     ul[i+1].appendChild(assignment_li);
+                // }
+
+                console.log("vod ",lectures[j].vod)
+            }
+
+        }
+        
+        
+    </script>
     {% block asd %}
     {% endblock %}
 </body>
 </html>
+vod: "{{ userlecture.body.vod }}",
+                vod_link: "{{userlecture.body.vod_link}}",
+                vod_duedate: "{{userlecture.body.vod_duedate}}",
+                assignment_name: "{{ userlecture.body.assignment_name }}",
+                assignment_link: "{{ userlecture.body.assignment_link }}",
+                assignment_duedate: "{{ userlecture.body.assignment_duedate }}",
+                link_name: "{{userlecture.body.link_name}}",
+                url_link: "{{userlecture.body.url_link}}",
+                quiz_name: "{{userlecture.body.quiz_name}}",
+                quiz_link: "{{userlecture.body.quiz_link}}",
