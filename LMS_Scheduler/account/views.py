@@ -164,7 +164,11 @@ def customize(request):
     return render(request, 'customize.html')
 
 def statistic(request):
-    return render(request, "statistic.html")
+    try:
+        id = Statistics.objects.filter(user = request.user)
+    except Statistics.DoesNotExist:
+        id = None
+    return render(request, "statistic.html", {'statistics' : id})
 
 def ranking(request):
     return  render(request, "ranking.html")
@@ -217,7 +221,7 @@ def create(request):
     qna.qna_title=request.GET['title']
     qna.qna_body=request.GET['body']
     qna.qna_date=timezone.datetime.now()
-    qna.qna_answer = ""
+    qna.qna_answer = "빠른 시일 내에 답변 드리겠습니다! 조금만 기다려 주세요."
     qna.qna_view = 0
     qna.save()
     return redirect('mypage')
