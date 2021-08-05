@@ -171,7 +171,15 @@ def statistic(request):
     return render(request, "statistic.html", {'statistics' : id})
 
 def ranking(request):
-    return  render(request, "ranking.html")
+    try:
+        all = Statistics.objects.all()
+    except Statistics.DoesNotExist:
+        all = None
+    try:
+        id = Statistics.objects.filter(user = request.user)
+    except Statistics.DoesNotExist:
+        id = None
+    return  render(request, "ranking.html", {'all_statistics' : all, 'mine' : id})
     
 def new(request):
     return render(request,'new.html')

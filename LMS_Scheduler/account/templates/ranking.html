@@ -55,10 +55,7 @@
       <div class="content">
         <div class="content_top">
           <div class="user">
-            <img class="myicon" src="{% static 'userimage/cat.png'%}" />
-            <div class="userid">me</div>
-            <div class="rank">6th</div>
-            <div class="time">14H 52M 12S</div>
+            
           </div>
         </div>
         <div class="content_bottom">
@@ -68,53 +65,7 @@
             <div class="time_text">시간</div>
           </div>
           <div class="ranking">
-            <div class="ranks">
-              <div class="rank_text">1</div>
-              <div class="id_text">
-                <img
-                  class="usericon"
-                  src="{% static 'userimage/dog (1).png'%}"
-                />
-                <p>내 이름은 가람</p>
-              </div>
-              <div class="time_text">시간</div>
-            </div>
-            <div class="line"></div>
-            <div class="ranks">
-              <div class="rank_text">2</div>
-              <div class="id_text">
-                <img
-                  class="usericon"
-                  src="{% static 'userimage/rabbit.png'%}"
-                />
-                <p>ezenjun</p>
-              </div>
-              <div class="time_text">12H 45m 30s</div>
-            </div>
-            <div class="line"></div>
-            <div class="ranks">
-              <div class="rank_text">3</div>
-              <div class="id_text">
-                <img
-                  class="usericon"
-                  src="{% static 'userimage/dog (3).png'%}"
-                />
-                <p>내 이름은 박재욱</p>
-              </div>
-              <div class="time_text">시간</div>
-            </div>
-            <div class="line"></div>
-            <div class="ranks">
-              <div class="rank_text">4</div>
-              <div class="id_text">
-                <img
-                  class="usericon"
-                  src="{% static 'userimage/sticker.png'%}"
-                />
-                <p>이대한</p>
-              </div>
-              <div class="time_text">시간</div>
-            </div>
+
           </div>
         </div>
       </div>
@@ -174,4 +125,88 @@
     </div>
     {% block asd %} {% endblock %}
   </body>
+  <script>
+  var user = document.getElementsByClassName("user");
+  var mystatistics =[
+      {% for statistic in mine %}{
+        id: "{{statistic.user}}",
+        daily_time: "{{statistic.daily}}",
+      },   
+      {% endfor %}
+  ];
+
+    var taskcontainer = document.getElementsByClassName("ranking");
+    var statistics =[
+      {% for statistic in all_statistics %}{
+          id: "{{statistic.user}}",
+          daily_time: "{{statistic.daily}}",
+          date_time: "{{statistic.date}}"
+      },   
+      {% endfor %}
+    ];
+    var users = new Set();
+    for(var i=0 ;i<statistics.length;i++){
+      users.add(statistics[i].id);
+      console.log(users);
+    }
+    var totaltime = [];
+    for(var i=0; i<users.size; i++){
+      totaltime.push(0);
+    }
+    console.log(totaltime);
+    Set.prototype.getByIndex = function(index) { return [...this][index]; }
+    for(var i=0; i<users.size; i++){
+      for(var j=0; j<statistics.length; j++){
+        if(users.getByIndex(i) == statistics[j].id){
+          var temp = Number(statistics[j].daily_time);
+          if(temp > 0 && temp != NaN)
+            totaltime[i] += temp;
+          console.log(i," 번째user의 time " ,totaltime[i]);
+        }
+      }
+    }
+    const myMap = new Map();
+    for(var i=0; i<totaltime.length; i++){
+      myMap.set(i,totaltime[i]);
+    }
+    const mapSort1 = new Map([...myMap.entries()].sort((a, b) => b[1] - a[1]));
+    console.log(mapSort1);
+    for(let key of mapSort1.keys()) {
+      console.log(users.getByIndex(key));
+    }
+
+    var ranking = document.getElementsByClassName("ranking");
+    var myrank = 0;
+    var rank = 1;
+      for(let key of mapSort1.keys()) {
+        if(users.getByIndex(key) == mystatistics[0].id){
+          myrank = rank;
+        }
+        ranking[0].innerHTML +=
+            `<div class="ranks"><div class="rank_text">` + rank + 
+            `</div>
+              <div class="id_text">
+                <img
+                  class="usericon"
+                  src="{% static 'userimage/dog (1).png'%}"
+                />
+                <p>` + users.getByIndex(key) + `</p>
+          </div>
+          <div class="time_text">` + totaltime[key] + `</div>
+        </div>
+        <div class="line"></div>`
+        rank++;
+      }
+
+
+  var mytotal = 0;
+  for(var i=0; i<mystatistics.length; i++){
+    mytotal+=Number(mystatistics[i].daily_time);
+  }
+  user[0].innerHTML = 
+    `<img class="myicon" src="{% static 'userimage/cat.png'%}" /><div class="userid">` + 'Me' + `</div>
+            <div class="rank">`+ myrank +`등!</div>
+            <div class="time">` + mytotal + `</div>`
+  </script>
 </html>
+

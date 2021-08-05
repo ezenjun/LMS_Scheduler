@@ -21,6 +21,7 @@ class Customer(models.Model):
     font = models.IntegerField()
     basic = models.IntegerField()
     language = models.IntegerField()
+    
 
 class Attendance(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
