@@ -72,13 +72,16 @@ def home(request):
                 soup=BeautifulSoup(response.text,"html.parser")
                 submissionstatus = soup.find("div", {"class": "submissionstatustable"})
                 alltr = submissionstatus.find_all("tr")
-                duedate = alltr[2].find("td", {"class": "cell c1 lastcol"})
+                try:
+                    duedate = alltr[2].find("td", {"class": "cell c1 lastcol"})
+                except:
+                    duedate = "no duedate"
                 # print("duedate : ", duedate.get_text())
                 # assignment = {'assignment_name' : assignment_name.get_text(), 'assignment_link' : assignment_link, 'assignment_duedate' : duedate.get_text()}
                 # lecture.append(assignment)
                 lecture["assignment_name"] = assignment_name.get_text()
                 lecture["assignment_link"] = assignment_link
-                lecture["assignment_duedate"] = duedate.get_text()
+                lecture["assignment_duedate"] = duedate
 
             #li class activity vod modtype_vod (강의VOD)
             if section.find("li", {"class": "vod"}) != None:
