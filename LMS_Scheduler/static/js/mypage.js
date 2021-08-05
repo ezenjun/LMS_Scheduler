@@ -138,3 +138,18 @@ document.getElementById("defaultOpen").click();
     });
 
   }
+
+
+
+  // var user = document.getElementsByClassName("sortable");
+  // var prioritys =[
+  //     {% for statistic in mine %}{
+  //       id: "{{statistic.user}}",
+  //       daily_time: "{{statistic.daily}}",
+  //     },   
+  //     {% endfor %}
+  // ];
+
+  // <li class="ui-state-default">
+  //   <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1
+  // </li>

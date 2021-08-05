@@ -41,12 +41,7 @@
       rel="stylesheet"
       href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
     />
-    <script>
-      $(function () {
-        $("#sortable").sortable();
-        $("#sortable").disableSelection();
-      });
-    </script>
+    
   </head>
   <body>
     <header>
@@ -353,6 +348,30 @@
     </div>
 
     <script type="text/javascript" src="{% static 'js/mypage.js' %}"></script>
+    <script>
+      
+      $("#sortable").sortable({
+        start:function(event,ui){
+            // 드래그 시작 시 호출
+        },
+        stop:function(event,ui){
+            // 드래그 종료 시 호출
+            reorder();
+        }
+      });
+
+    /* 번호 재입력(내부적으로) */
+    var priority = [];
+    function reorder() {
+        $("#sortable li").each(function(i, box) {
+            $(box).val(i + 1);
+            <!-- priority[i] = document.getElementsByTagName('li')[i].getText(); -->여기가문제
+            console.log(priority)
+        });
+    }
+      
+      
+    </script>
     {% block asd %} {% endblock %}
   </body>
 </html>
