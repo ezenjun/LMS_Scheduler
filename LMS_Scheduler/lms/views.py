@@ -38,8 +38,8 @@ def home(request):
     soup=BeautifulSoup(response.text,"html.parser")
     print(soup)
     #강의명 긁어오기+
-    courselist = soup.find("div", {"class": "course_lists"})
-    courses = courselist.find_all('h3')
+    courselist = soup.find("tbody", {"class": "my-course-lists"})
+    courses = courselist.find_all('a')
     print("강의 리스트")
     for course in courses:
         print(course.get_text())
