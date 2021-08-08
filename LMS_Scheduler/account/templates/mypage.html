@@ -136,36 +136,10 @@
           <div class="menu"><p>우선 순위</p></div>
           <div class="box">
             <div class="priority_list">
-              <div class="priority_text">1 순위</div>
-              <div class="priority_text">2 순위</div>
-              <div class="priority_text">3 순위</div>
-              <div class="priority_text">4 순위</div>
-              <div class="priority_text">5 순위</div>
-              <div class="priority_text">6 순위</div>
-              <div class="priority_text">7 순위</div>
+              
             </div>
             <ul id="sortable">
-              <li class="ui-state-default">
-                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1
-              </li>
-              <li class="ui-state-default">
-                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2
-              </li>
-              <li class="ui-state-default">
-                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3
-              </li>
-              <li class="ui-state-default">
-                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4
-              </li>
-              <li class="ui-state-default">
-                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5
-              </li>
-              <li class="ui-state-default">
-                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6
-              </li>
-              <li class="ui-state-default">
-                <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7
-              </li>
+              
             </ul>
           </div>
         </div>
@@ -349,7 +323,36 @@
 
     <script type="text/javascript" src="{% static 'js/mypage.js' %}"></script>
     <script>
+      var sortable = document.getElementById("sortable");
+      let classes = [
+        {% for myclass in myclasses %} {
+          classname: "{{ myclass.class_name }}",
+        },
+        {% endfor %}
+      ];
+      var priority_list = document.getElementsByClassName("priority_list");
+      for(var i = 0; i<classes.length; i++){
+        var prioritydiv = document.createElement('div');
+        prioritydiv.className += "priority_text";
+        prioritydiv.innerHTML += (i+1) + " 순위";
+        priority_list[0].appendChild(prioritydiv);
+        var class_li = document.createElement('li');
+        class_li.className += "ui-state-default";
+        var span = document.createElement('span');
+        span.calssName += "ui-icon ui-icon-arrowthick-2-n-s";
+        class_li.appendChild(span);
+        class_li.appendChild(document.createTextNode(classes[i].classname));
+        console.log("class_li: ",class_li);
+        sortable.appendChild(class_li);
+      }
+      //<div class="priority_text">1 순위</div>
       
+      //`<li class="ui-state-default">
+      //  <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>`
+      //</li>`+classes[i].classname
+
+
+
       $("#sortable").sortable({
         start:function(event,ui){
             // 드래그 시작 시 호출

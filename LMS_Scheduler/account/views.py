@@ -150,6 +150,7 @@ def mypage(request):
     lmsuser = Customer.objects.get(user = user)
     myid = str(lmsuser.user)
     qnas = Qna.objects
+    myclass = Class.objects.filter(user = request.user)
     if len(Qna.objects.filter(user = request.user)) !=0:
         myqnas= Qna.objects.filter(user = request.user)
         print(myqnas)
@@ -158,7 +159,7 @@ def mypage(request):
         print(myqnas)
     
     notices = Notices.objects
-    return render(request,'mypage.html', {'user':user,'lmsuser':lmsuser, 'qnas':qnas,'myqnas':myqnas, 'notices':notices, 'myid':myid})
+    return render(request,'mypage.html', {'user':user,'lmsuser':lmsuser, 'qnas':qnas,'myqnas':myqnas, 'notices':notices, 'myid':myid, 'myclasses':myclass})
 
 def customize(request):
     return render(request, 'customize.html')

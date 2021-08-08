@@ -28,9 +28,8 @@ class Attendance(models.Model):
     attendance=models.DateField()
 
 class Class(models.Model):
-    myclass:models.IntegerField()
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
     class_name=models.CharField(max_length=20)
-    class_time=models.TimeField()
 
 class Statistics(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)

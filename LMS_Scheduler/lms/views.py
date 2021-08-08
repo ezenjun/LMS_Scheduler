@@ -42,8 +42,11 @@ def home(request):
     courses = courselist.find_all('a')
     print("강의 리스트")
     for course in courses:
-        print(course.get_text())
+        userclass = Class(user=request.user, class_name = course.get_text())
+        userclass.save()
+        print("db 저장용 ", userclass.class_name)
     print("------------------------------------")
+    
     # 강의 세부페이지 링크 긁어오기
     id = 0
     lectures = []
