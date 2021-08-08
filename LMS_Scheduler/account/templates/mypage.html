@@ -141,6 +141,7 @@
             <ul id="sortable">
               
             </ul>
+            <button type="button" id ="savepriority" onclick="{% url 'savepriority' %}">저장 </button>
           </div>
         </div>
         <div id="usertype" class="tabcontent scrollableContent">
@@ -366,14 +367,58 @@
     /* 번호 재입력(내부적으로) */
     var priority = [];
     function reorder() {
+      eachclass = document.getElementsByClassName("ui-state-default")
         $("#sortable li").each(function(i, box) {
             $(box).val(i + 1);
-            <!-- priority[i] = document.getElementsByTagName('li')[i].getText(); -->여기가문제
-            console.log(priority)
+    
+            priority[i] = eachclass[i].innerText; 
+            console.log(priority[i])
         });
     }
       
-      
+    
+
+    $(document).ready(function () {
+          buttonEvt();
+      });
+
+    let checkin = false;
+    function buttonEvt() {
+        $("#savepriority").click(function () {
+            checkin = true;
+
+            if (!confirm("확인(예) 또는 취소(아니오)를 선택해주세요.")) {
+        // 취소(아니오) 버튼 클릭 시 이벤트
+            } else {
+        // 확인(예) 버튼 클릭 시 이벤트
+            }
+            $.ajax({
+                type: 'POST',
+                url: "/account/savepriority",
+                headers: {
+                    'X-CSRFToken': '{{csrf_token}}'
+                },
+                data: JSON.stringify({ 'priority': priority }),
+                dataType: "text",
+                success: function (data) {
+                    console.log('성공');
+                },
+                error: function (data) {
+                    console.log('실패');
+                    console.log(request);
+                    console.log(error);
+                }
+            });
+            // if(con_test){
+            //   location.reload();
+            //   con_test = false;
+            // }
+            
+        });
+    };
+
+
+
     </script>
     {% block asd %} {% endblock %}
   </body>

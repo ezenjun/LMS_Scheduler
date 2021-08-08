@@ -284,3 +284,10 @@ def checkin(request):
         return render(request, "calendar.html", {'usercheckins': usercheckins})
     else:
         return render(request, "calendar.html")
+
+@csrf_exempt
+def savepriority(request):
+     if request.is_ajax():
+         request_data = json.loads(request.body)
+         priority = request_data['priority']
+         print("우선순위",priority)

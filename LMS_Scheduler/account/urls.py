@@ -31,4 +31,6 @@ urlpatterns = [
     path('mypage/edit', views.edit, name = "edit"),
     path('qnaAnswer/',views.qnaAnswer,name ="qnaAnswer"),
     path('calendar/checkin', views.checkin, name = "checkin"),
+
+    path('savepriority',views.savepriority,name="savepriority"),
 ]
