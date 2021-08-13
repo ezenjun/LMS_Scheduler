@@ -30,6 +30,7 @@ class Attendance(models.Model):
 class Class(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     class_name=models.CharField(max_length=20)
+    rank=models.IntegerField()
 
 class Statistics(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)

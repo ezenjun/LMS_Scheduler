@@ -42,8 +42,10 @@ def home(request):
     courses = courselist.find_all('a')
     print("강의 리스트")
     if(Class.objects.filter(user=request.user).exists()==False):
+        i=0
         for course in courses:
-            userclass = Class(user=request.user, class_name = course.get_text())
+            i=i+1
+            userclass = Class(user=request.user, class_name = course.get_text(),rank=i)
             userclass.save()
             print("db 저장용 ", userclass.class_name)
 

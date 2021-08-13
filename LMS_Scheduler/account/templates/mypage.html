@@ -142,7 +142,7 @@
               
             </ul>
           </div>
-          <button type="button" id ="savepriority" onclick="{% url 'savepriority' %}">저장 </button>
+          <button id ="savepriority">저장</button>
         </div>
         <div id="usertype" class="tabcontent scrollableContent">
           <div class="menu"><p>본인의 성향을 골라주세요</p></div>
@@ -347,11 +347,6 @@
         sortable.appendChild(class_li);
       }
 
-      1.디비확인해서 유저가 처음 로그인했는지 확인
-	  2.처음이면 강의 목록대로 priority 저장
-	  	아니면 사용자가 저장 버튼을 누른 대로 저장
-	  3. 새로고침, 나중에 들어왔을 때 그대로 우선순위 보여줌
-
 
 
       $("#sortable").sortable({
@@ -378,49 +373,40 @@
       
     
 
-    
+    {% comment %} $(document).ready(function () {
+          buttonEvt();
+      }); {% endcomment %}
 
-    let checkin = false;
+    
     function buttonEvt() {
         $("#savepriority").click(function () {
-            checkin = true;
-
             if (!confirm("확인(예) 또는 취소(아니오)를 선택해주세요.")) {// 취소(아니오) 버튼 클릭 시 이벤트
-
+				location.reload();
             } 
-			else {// 확인(예) 버튼 클릭 시 이벤트
-                $.ajax({
-                    type: 'POST',
-                    url: "/account/savepriority",
-                    headers: {
-                        'X-CSRFToken': '{{csrf_token}}'
-                    },
-                    data: JSON.stringify({ 'priority': priority }),
-                    dataType: "text",
-                    success: function (data) {
-                        console.log('성공');
-						console.log(data);
-                    },
-                    error: function (data) {
-                        console.log('실패');
-						console.log(data);
-                        console.log(request);
-                        console.log(error);
-                    }
-                });
-            }
-            
-            // if(con_test){
-            //   location.reload();
-            //   con_test = false;
-            // }
-            
-        });
+            else {// 확인(예) 버튼 클릭 시 이벤트
+				$.ajax({
+                  type: 'POST',
+                  url: "/account/savepriority",
+                  headers: {
+                      'X-CSRFToken': '{{csrf_token}}'
+                  },
+                  data: JSON.stringify({ 'priority': priority }),
+                  dataType: "text",
+                  success: function (data) {
+                      console.log('성공');
+                  },
+                  error: function (data) {
+                      console.log('실패');
+					  console.log(data[1]);
+                      console.log(request);
+                      console.log(error);
+                  }
+              });
+			}
+
+		});
     };
 
-
-
     </script>
-    {% block asd %} {% endblock %}
   </body>
 </html>

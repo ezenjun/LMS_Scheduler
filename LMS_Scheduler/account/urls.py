@@ -32,5 +32,5 @@ urlpatterns = [
     path('qnaAnswer/',views.qnaAnswer,name ="qnaAnswer"),
     path('calendar/checkin', views.checkin, name = "checkin"),
 
-    path('savepriority',views.savepriority,name="savepriority"),
+    path('savepriority/',views.savepriority, name="savepriority"),
 ]

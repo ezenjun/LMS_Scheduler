@@ -287,20 +287,18 @@ def checkin(request):
 
 @csrf_exempt
 def savepriority(request):
+    user=request.user
     if request.is_ajax():
         request_data = json.loads(request.body)
+        print('request.body=',request.data)
         priority = request_data['priority']
         print("우선순위",priority)
-        try:
-            userpriority = Priority.objects.filter(user=request.user)
-            userpriority.delete()
-            newPriority = Priority(user = request.user, usertype = 1, )
-        except Priority.DoesNotExist:
-            userpriority = None
+        Class.objects.filter(user=user).delete()
 
-        # 1priority
-        # 2priority
-        # 3priority
-        # 4priority
-        # 5priority
-        # 6priority
+        for i in range(len(priority)):
+            newClass=Class(user=request.user, class_name = priority[i].get_text(),rank=i+1)
+            newClass.save()
+
+        return render(request, "mypage.html")
+    else:
+        return render(request, "mypage.html")
