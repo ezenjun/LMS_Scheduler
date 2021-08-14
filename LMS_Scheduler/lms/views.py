@@ -80,7 +80,11 @@ def home(request):
                 submissionstatus = soup.find("div", {"class": "submissionstatustable"})
                 alltr = submissionstatus.find_all("tr")
                 try:
-                    duedate = alltr[2].find("td", {"class": "cell c1 lastcol"})
+                    due = alltr[2].find("td", {"class": "cell c1 lastcol"})
+                    duedate = due.get_text()
+                    duedatetime = datetime.strptime(duedate, '%Y-%m-%d %H:%M')
+                    dueweekday = duedatetime.weekday()
+                    
                 except:
                     duedate = "no duedate"
                 # print("duedate : ", duedate.get_text())
@@ -89,6 +93,8 @@ def home(request):
                 lecture["assignment_name"] = assignment_name.get_text()
                 lecture["assignment_link"] = assignment_link
                 lecture["assignment_duedate"] = duedate
+                lecture["assignment_dueweekday"] = dueweekday
+                
 
             #li class activity vod modtype_vod (강의VOD)
             if section.find("li", {"class": "vod"}) != None:

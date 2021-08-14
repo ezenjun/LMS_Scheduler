@@ -373,37 +373,33 @@
       
     
 
-    {% comment %} $(document).ready(function () {
-          buttonEvt();
-      }); {% endcomment %}
+    //$(document).ready(function () {
+    //    buttonEvt();
+    //});
 
     
     function buttonEvt() {
         $("#savepriority").click(function () {
-            if (!confirm("확인(예) 또는 취소(아니오)를 선택해주세요.")) {// 취소(아니오) 버튼 클릭 시 이벤트
-				location.reload();
-            } 
-            else {// 확인(예) 버튼 클릭 시 이벤트
-				$.ajax({
-                  type: 'POST',
-                  url: "/account/savepriority",
-                  headers: {
-                      'X-CSRFToken': '{{csrf_token}}'
-                  },
-                  data: JSON.stringify({ 'priority': priority }),
-                  dataType: "text",
-                  success: function (data) {
-                      console.log('성공');
-                  },
-                  error: function (data) {
-                      console.log('실패');
-					  console.log(data[1]);
-                      console.log(request);
-                      console.log(error);
-                  }
-              });
-			}
-
+          var conf = confirm("확인(예) 또는 취소(아니오)를 선택해주세요.");
+          if(conf){
+			$.ajax({
+				type: 'POST',
+				url: "/account/savepriority/",
+				headers: {
+					'X-CSRFToken': '{{csrf_token}}'
+				},
+				data: JSON.stringify({ 'priority': priority }),
+				dataType: "text",
+				success: function (data) {
+					console.log('성공');
+				},
+				error: function (data) {
+					console.log('실패');
+					console.log(request);
+					console.log(error);
+				}
+			});
+		  }
 		});
     };
 
