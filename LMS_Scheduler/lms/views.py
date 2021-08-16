@@ -143,7 +143,8 @@ def home(request):
             print("No Assginment / Lecture / Quiz")
             lecture = {}
         print(lecture)
-        each_lecture = {'id' : id, 'body' : lecture}
+        
+        each_lecture = {'id' : id, 'course': courses[id-1].get_text(), 'body' : lecture}
         lectures.append(each_lecture)
         print("------------------------------------")
 
@@ -157,6 +158,7 @@ def home(request):
     #     return render(request, "home.html")
     # else:
     #     return render(request, "mainLogin.html")
+    
     if cur_user.is_anonymous:
         print('aaa')
         return redirect('mainLogin')

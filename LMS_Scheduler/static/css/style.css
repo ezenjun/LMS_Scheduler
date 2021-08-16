@@ -103,9 +103,9 @@ header{
   width: 300px;
   font-size: 1.2rem;
 }
-.day_box p{
+/* .day_box p{
   font-weight:bold;
-}
+} */
 .lecture{
   margin-top: 10px;
   height: 300px;
@@ -210,4 +210,52 @@ header{
 .left {
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 8px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  font-weight: 100;
+  display: none;
+  overflow: hidden;
 }

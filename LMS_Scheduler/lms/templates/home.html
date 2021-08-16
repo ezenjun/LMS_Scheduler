@@ -15,6 +15,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
 </head>
 <body>
     <!-- header -->
@@ -63,9 +65,10 @@
                     </div>
                 </div>
             </div>
-            <div class = "today">Today</div>
+            <!-- <div class = "today">Today</div> -->
             <div class = "task_container">
-                <p class = "arrows"><i class="arrow left"></i></p>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
                 <!-- <div class = "day_box">
                     <div class = "day">월</div>
                     <div class="lecture">
@@ -168,11 +171,13 @@
                         </ul>
                     </div>
                 </div> -->
-                <p class = "arrows"><i class="arrow right"></i></p>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                
             </div>
         </div>  
     </div>
-
     <!--footer : 병구 담당-->
     <div id="footer" style="background-color: rgba(16, 60, 180, 0.158)">
           <br>
@@ -210,17 +215,18 @@
     </div>
     <script type="text/javascript" src="{% static 'js/stopwatch.js' %}"></script>
     <script>
-        var taskcontainer = document.getElementsByClassName("task_container");
-        var days=['월', '화', '수', '목', '금'];
+        var taskcontainer = document.getElementsByClassName("swiper-wrapper");
+        var days=['월', '화', '수', '목', '금', '토', '일'];
         let lectures = [
             {% for userlecture in userlectures %} {
+                course: "{{ userlecture.course }}",
                 vod: "{{ userlecture.body.vod }}",
                 vod_link: "{{userlecture.body.vod_link}}",
                 vod_duedate: "{{userlecture.body.vod_duedate}}",
                 assignment_name: "{{ userlecture.body.assignment_name }}",
                 assignment_link: "{{ userlecture.body.assignment_link }}",
                 assignment_duedate: "{{ userlecture.body.assignment_duedate }}",
-                assignment_dueweekday: "{{ userlecture.body.assignment_dueweekady }}",
+                assignment_dueweekday: "{{ userlecture.body.assignment_dueweekday }}",
                 link_name: "{{userlecture.body.link_name}}",
                 url_link: "{{userlecture.body.url_link}}",
                 quiz_name: "{{userlecture.body.quiz_name}}",
@@ -228,27 +234,35 @@
             },
             {% endfor %}
         ];
-        for(var i=0; i<10; i+=2){
+
+        for(var i=0; i<14; i+=2){
             taskcontainer[0].innerHTML += 
-            `<div class = "day_box">
-                <div class = "day">`+days[i/2]+`</div>
-                <div class="lecture">
-                    <p>강의</p>
-                    <ul class ="list">
-                    </ul>
-                </div>
-                <div class = "border"></div>
-                <div class="assignment">
-                    <p>과제/퀴즈</p>
-                    <ul class ="list">
-                    </ul>
+            `<div class="swiper-slide">
+                <div class = "day_box">
+                    <div class = "day">`+days[i/2]+`</div>
+                    <div class="lecture">
+                        <p>강의</p>
+                        <ul class ="list">
+                        </ul>
+                    </div>
+                    <div class = "border"></div>
+                    <div class="assignment">
+                        <p>과제/퀴즈</p>
+                        <ul class ="list">
+                        </ul>
+                    </div>
                 </div>
             </div>
             `
+
+            
+
+              
             var ul = document.getElementsByClassName("list");
             for(var j=0; j<lectures.length;j++){
                 var lecture_li = document.createElement("li");
-                var assignment_li = document.createElement("li");
+                var assignment_li = document.createElement("button");
+                assignment_li.className = 'accordion';
                 if(lectures[j].vod != ''){
                     lecture_li.appendChild(document.createTextNode(lectures[j].vod));
                     ul[i].appendChild(lecture_li);
@@ -270,33 +284,96 @@
                 //     ul[i].appendChild(lecture_li);
                 // }
                 //////////////////////////////////////////////////////////////////////////////////////
-                if(lectures[j].assignment_name != ''){
-                    assignment_li.appendChild(document.createTextNode(lectures[j].assignment_name));
-                    ul[i+1].appendChild(assignment_li);
+                if(i == lectures[j].assignment_dueweekday*2){
+                    if(lectures[j].assignment_name != '' && lectures[j].assignment_duedate != ''){
+                        assignment_li.innerHTML = lectures[j].course;
+                        ul[i+1].appendChild(assignment_li);
+                        ul[i+1].innerHTML +=
+                        `<div class="panel">
+                        <p>`+lectures[j].assignment_name+`</p> <p>`+lectures[j].assignment_duedate + `</p></div>`;
+                    }
+                    else if(lectures[j].assignment_name != ''){
+                        assignment_li.innerHTML = lectures[j].course;
+                        ul[i+1].appendChild(assignment_li);
+                        ul[i+1].innerHTML +=
+                        `<div class="panel">
+                        <p>`+lectures[j].assignment_name+`</p></div>`;
+                    }
+                    
+                    // if(lectures[j].assignment_link != ''){
+                    //     assignment_li.appendChild(document.createTextNode(lectures[j].assignment_link));
+                    //     ul[i+1].appendChild(assignment_li);
+                    // }
+                    
                 }
-                // if(lectures[j].assignment_link != ''){
-                //     assignment_li.appendChild(document.createTextNode(lectures[j].assignment_link));
-                //     ul[i+1].appendChild(assignment_li);
-                // }
-                if(lectures[j].assignment_duedate != ''){
-                    assignment_li.appendChild(document.createTextNode(lectures[j].assignment_duedate));
+                console.log('quiz: ', lectures[j].quiz_name);
+                if(lectures[j].quiz_name != '' && lectures[j].quiz_link != ''){
+                    assignment_li.innerHTML = lectures[j].course;
                     ul[i+1].appendChild(assignment_li);
+                    ul[i+1].innerHTML +=
+                    `<div class="panel">
+                    <p>`+lectures[j].quiz_name+`</p> <p>`+lectures[j].quiz_link + `</p></div>`;
                 }
-                if(lectures[j].assignment_quiz_name != undefined){
-                    assignment_li.appendChild(document.createTextNode(lectures[j].assignment_quiz_name));
+                else if(lectures[j].quiz_name != ''){
+                    assignment_li.innerHTML = lectures[j].course;
                     ul[i+1].appendChild(assignment_li);
+                    ul[i+1].innerHTML +=
+                    `<div class="panel">
+                    <p>`+lectures[j].quiz_name+`</p></div>`;
                 }
+
+                
                 // if(lectures[j].assignment_quiz_link != ''){
                 //     assignment_li.appendChild(document.createTextNode(lectures[j].assignment_quiz_link));
                 //     ul[i+1].appendChild(assignment_li);
                 // }
 
-                console.log("vod ",lectures[j].vod)
+                // console.log("vod ",lectures[j].vod)
             }
 
         }
-        
-        
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            slidesPerView: 5,
+            spaceBetween: 10,
+            breakpoints: {
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 40
+                },
+                768: {
+                    slidesPerView: 1,
+                    spaceBetween: 30
+                },
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10
+                }
+            }
+        });
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                /* Toggle between adding and removing the "active" class,
+                to highlight the button that controls the panel */
+                this.classList.toggle("active");
+
+                /* Toggle between hiding and showing the active panel */
+                var panel = this.nextElementSibling;
+                console.log("panel=",panel);
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+
     </script>
     {% block asd %}
     {% endblock %}
