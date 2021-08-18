@@ -1,7 +1,7 @@
 body {
   background-image: url(../img/MainBackground.jpg);
-  background-size: cover;
-  background-position: center;
+  
+  
   font-family: 'Nanum Gothic', sans-serif;
 }
 /* header */
@@ -91,24 +91,26 @@ header{
 }
 
 .day_box {
-  border: 1px solid #6D6D6D;
-  border-radius: 8px;
+  /* border: 1px solid #6D6D6D; */
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.26);
   display: flex;
-  height: 700px;
+  min-height: 700px;
   margin: 0px 10px 70px 10px;
   background-color: rgb(255, 255, 255);
   text-align: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   width: 300px;
   font-size: 1.2rem;
+  padding-top: 10px;
 }
 /* .day_box p{
   font-weight:bold;
 } */
 .lecture{
   margin-top: 10px;
-  height: 300px;
+  height: auto;
   text-align: left;
   padding: 16px;
 }
@@ -128,25 +130,12 @@ header{
   
 }
 
-.red{
-  border:2px solid red;
-  border-radius: 4px;
-}
-
-.green{
-  border:2px solid green;
-  border-radius: 4px;
-}
-.orange{
-  border:2px solid rgb(248, 136, 7);
-  border-radius: 4px;
-}
 .border{
   border: 1px solid #6D6D6D;
 }
 .assignment{
+  height: auto;
   margin-top: 10px;
-  height: 300px;
   text-align: left;
   padding: 16px;
 }
@@ -159,22 +148,22 @@ header{
   justify-content: center;
   align-items: center;
   margin-top: 30px;
-  font-size: 18px;
+  font-size: 15px;
   font-family: 'Nanum Gothic', sans-serif;
 }
 .timer_border{
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #333;
-  border-radius: 8px;;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.26);
 }
 
 .timerBox .time{
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 15px;
   color: #4C4C4C;
   text-align: center;
   font-family: sans-serif;
@@ -235,15 +224,18 @@ header{
   align-items: center;
 }
 .accordion {
-  background-color: #eee;
+  border-radius: 12px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.26);
   color: #444;
   cursor: pointer;
   padding: 8px;
-  width: 100%;
   text-align: left;
   border: none;
   outline: none;
   transition: 0.4s;
+  margin-bottom: 20px;
+  z-index:5;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
@@ -253,9 +245,55 @@ header{
 
 /* Style the accordion panel. Note: hidden by default */
 .panel {
-  padding: 0 18px;
+  padding: 18px;
   background-color: white;
   font-weight: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.26);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.26);
+  border-radius: 12px;
   display: none;
-  overflow: hidden;
+  overflow:auto;
+  z-index: 100;
+  margin: 0 0 10px 0;
+  color: black;
+}
+
+.panel > a {
+  text-decoration: none;
+  color: black;
+}
+
+.red{
+  /* border:2px solid red; */
+  background: rgba(255, 0, 0, 0.623);
+  color:white;
+  z-index: 100;
+}
+.red > a{
+  text-decoration: none;
+  color:white;
+  z-index: 100;
+}
+
+.green{
+  background: rgba(69, 199, 36, 0.61);
+  color:white;
+  z-index: 100;
+}
+
+.green > a{
+  text-decoration: none;
+  color:white;
+  z-index: 100;
+}
+.orange{
+  background: rgba(245, 159, 48, 0.856);
+  color:white;
+  z-index: 100;
+}
+
+.orange > a{
+  text-decoration: none;
+  color:white;
+  z-index: 100;
 }

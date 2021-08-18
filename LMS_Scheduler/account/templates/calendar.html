@@ -59,8 +59,7 @@
               <a href="{% url 'statistic' %}">통계</a>
             </div>
             <div class="stamp">
-              <img src="" alt="" />
-              <p>개수</p>
+              <img src="../../static/userimage/cat.png" width="30px" height="30px" margin="0 10px"/>
             </div>
           </div>
         </div>
@@ -105,7 +104,9 @@
         {% endfor %}
       ]
 
-
+      var totalcheckin = checks.length;
+      var stamp = document.getElementsByClassName('stamp');
+      stamp[0].innerHTML += '<p>  X ' + totalcheckin + '</p>';
 
       $(document).ready(function () {
           buttonEvt();
@@ -187,7 +188,7 @@
                   day.classList.add('calendar-day-hover')
                   day.innerHTML = i - first_day.getDay() + 1
                   for(var j = 0; j< checks.length; j++){
-                    var dateArr =checks[j].attendance.toString();
+                    var dateArr = checks[j].attendance.toString();
               
                     const getday = new Date(dateArr);
                     const getMonth = getday.getMonth();

@@ -260,24 +260,33 @@
               
             var ul = document.getElementsByClassName("list");
             for(var j=0; j<lectures.length;j++){
-                var lecture_li = document.createElement("li");
+                var lecture_li = document.createElement("button");
                 var assignment_li = document.createElement("button");
+                lecture_li.className = 'accordion';
                 assignment_li.className = 'accordion';
                 if(lectures[j].vod != ''){
-                    lecture_li.appendChild(document.createTextNode(lectures[j].vod));
+                    lecture_li.innerHTML = lectures[j].course;
+                    //lecture_li.appendChild(document.createTextNode(lectures[j].vod));
                     ul[i].appendChild(lecture_li);
+                    ul[i].innerHTML +=
+                    `<div class="panel" >
+                    <a href=" ` + lectures[j].vod_link + `" target="_blank">`+lectures[j].vod+`</a> <p>`+lectures[j].vod_duedate+ `</p></div>`;
                 }
                 // if(lectures[j].vod_link != ''){
                 //     lecture_li.appendChild(document.createTextNode(lectures[j].vod_link));
                 //     ul[i].appendChild(lecture_li);
                 // }
-                if(lectures[j].vod_duedate != ''){
-                    lecture_li.appendChild(document.createTextNode(lectures[j].vod_duedate));
-                    ul[i].appendChild(lecture_li);
-                }
+                //if(lectures[j].vod_duedate != ''){
+                //    lecture_li.appendChild(document.createTextNode(lectures[j].vod_duedate));
+                //    ul[i].appendChild(lecture_li);
+                //}
                 if(lectures[j].link_name != ''){
-                    lecture_li.appendChild(document.createTextNode(lectures[j].link_name));
+                    lecture_li.innerHTML = lectures[j].course;
+                    //lecture_li.appendChild(document.createTextNode(lectures[j].link_name));
                     ul[i].appendChild(lecture_li);
+                    ul[i].innerHTML +=
+                    `<div class="panel" >
+                        <a href=" ` + lectures[j].url_link + `" target="_blank">`+lectures[j].link_name+`</a></div>`;
                 }
                 // if(lectures[j].url_link != ''){
                 //     lecture_li.appendChild(document.createTextNode(lectures[j].url_link));
@@ -289,8 +298,8 @@
                         assignment_li.innerHTML = lectures[j].course;
                         ul[i+1].appendChild(assignment_li);
                         ul[i+1].innerHTML +=
-                        `<div class="panel">
-                        <p>`+lectures[j].assignment_name+`</p> <p>`+lectures[j].assignment_duedate + `</p></div>`;
+                        `<div class="panel orange" >
+                        <a href=" `+lectures[j].assignment_link +`" target="_blank">`+lectures[j].assignment_name+`</a> <p>`+lectures[j].assignment_duedate + `</p></div>`;
                     }
                     else if(lectures[j].assignment_name != ''){
                         assignment_li.innerHTML = lectures[j].course;
@@ -312,7 +321,7 @@
                     ul[i+1].appendChild(assignment_li);
                     ul[i+1].innerHTML +=
                     `<div class="panel">
-                    <p>`+lectures[j].quiz_name+`</p> <p>`+lectures[j].quiz_link + `</p></div>`;
+                    <a href=" `+lectures[j].quiz_link +`" target="_blank">`+lectures[j].quiz_name+ `</a></div>`;
                 }
                 else if(lectures[j].quiz_name != ''){
                     assignment_li.innerHTML = lectures[j].course;
