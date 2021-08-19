@@ -110,6 +110,7 @@ header{
 } */
 .lecture{
   margin-top: 10px;
+  min-height: 300px;
   height: auto;
   text-align: left;
   padding: 16px;
@@ -248,7 +249,6 @@ header{
   padding: 18px;
   background-color: white;
   font-weight: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.26);
   box-shadow: 0 2px 8px rgba(0,0,0,0.26);
   border-radius: 12px;
   display: none;

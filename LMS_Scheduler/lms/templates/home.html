@@ -220,6 +220,7 @@
         let lectures = [
             {% for userlecture in userlectures %} {
                 course: "{{ userlecture.course }}",
+                course_date: "{{userlecture.body.course_date}}",
                 vod: "{{ userlecture.body.vod }}",
                 vod_link: "{{userlecture.body.vod_link}}",
                 vod_duedate: "{{userlecture.body.vod_duedate}}",
@@ -264,34 +265,39 @@
                 var assignment_li = document.createElement("button");
                 lecture_li.className = 'accordion';
                 assignment_li.className = 'accordion';
-                if(lectures[j].vod != ''){
-                    lecture_li.innerHTML = lectures[j].course;
-                    //lecture_li.appendChild(document.createTextNode(lectures[j].vod));
-                    ul[i].appendChild(lecture_li);
-                    ul[i].innerHTML +=
-                    `<div class="panel" >
-                    <a href=" ` + lectures[j].vod_link + `" target="_blank">`+lectures[j].vod+`</a> <p>`+lectures[j].vod_duedate+ `</p></div>`;
+
+
+                if(i == lectures[j].course_date*2){
+                    if(lectures[j].vod != ''){
+                        lecture_li.innerHTML = lectures[j].course;
+                        //lecture_li.appendChild(document.createTextNode(lectures[j].vod));
+                        ul[i].appendChild(lecture_li);
+                        ul[i].innerHTML +=
+                        `<div class="panel" >
+                        <a href=" ` + lectures[j].vod_link + `" target="_blank">`+lectures[j].vod+`</a> <p>`+lectures[j].vod_duedate+ `</p></div>`;
+                    }
+                    // if(lectures[j].vod_link != ''){
+                    //     lecture_li.appendChild(document.createTextNode(lectures[j].vod_link));
+                    //     ul[i].appendChild(lecture_li);
+                    // }
+                    //if(lectures[j].vod_duedate != ''){
+                    //    lecture_li.appendChild(document.createTextNode(lectures[j].vod_duedate));
+                    //    ul[i].appendChild(lecture_li);
+                    //}
+                    if(lectures[j].link_name != ''){
+                        lecture_li.innerHTML = lectures[j].course;
+                        //lecture_li.appendChild(document.createTextNode(lectures[j].link_name));
+                        ul[i].appendChild(lecture_li);
+                        ul[i].innerHTML +=
+                        `<div class="panel" >
+                            <a href=" ` + lectures[j].url_link + `" target="_blank">`+lectures[j].link_name+`</a></div>`;
+                    }
+                    // if(lectures[j].url_link != ''){
+                    //     lecture_li.appendChild(document.createTextNode(lectures[j].url_link));
+                    //     ul[i].appendChild(lecture_li);
+                    // }
                 }
-                // if(lectures[j].vod_link != ''){
-                //     lecture_li.appendChild(document.createTextNode(lectures[j].vod_link));
-                //     ul[i].appendChild(lecture_li);
-                // }
-                //if(lectures[j].vod_duedate != ''){
-                //    lecture_li.appendChild(document.createTextNode(lectures[j].vod_duedate));
-                //    ul[i].appendChild(lecture_li);
-                //}
-                if(lectures[j].link_name != ''){
-                    lecture_li.innerHTML = lectures[j].course;
-                    //lecture_li.appendChild(document.createTextNode(lectures[j].link_name));
-                    ul[i].appendChild(lecture_li);
-                    ul[i].innerHTML +=
-                    `<div class="panel" >
-                        <a href=" ` + lectures[j].url_link + `" target="_blank">`+lectures[j].link_name+`</a></div>`;
-                }
-                // if(lectures[j].url_link != ''){
-                //     lecture_li.appendChild(document.createTextNode(lectures[j].url_link));
-                //     ul[i].appendChild(lecture_li);
-                // }
+                
                 //////////////////////////////////////////////////////////////////////////////////////
                 if(i == lectures[j].assignment_dueweekday*2){
                     if(lectures[j].assignment_name != '' && lectures[j].assignment_duedate != ''){

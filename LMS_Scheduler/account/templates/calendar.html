@@ -49,14 +49,16 @@
       <div class="content">
         <div class="content_top">
           <div class="top_left" id="customizing">
-            <a href="{% url 'customize' %}">커스터마이징</a>
+            <!-- <a href="{% url 'customize' %}">커스터마이징</a> -->
+            <button type="button" onclick="location.href='{% url 'customize' %}'">커스터마이징</button>
           </div>
           <div class="top_center" id="checkin">
             <button id="checkinbtn">출석체크하기!</button>
           </div>
           <div class="top_right">
             <div class="analysis">
-              <a href="{% url 'statistic' %}">통계</a>
+              <!-- <a href="{% url 'statistic' %}">통계</a> -->
+              <button type="button" onclick="location.href='{% url 'statistic' %}'">통계</button>
             </div>
             <div class="stamp">
               <img src="../../static/userimage/cat.png" width="30px" height="30px" margin="0 10px"/>

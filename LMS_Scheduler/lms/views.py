@@ -5,6 +5,7 @@ from django.contrib.auth.models import AnonymousUser, User
 from account.models import *
 from datetime import datetime
 import time
+import re
 import json
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
@@ -36,7 +37,6 @@ def home(request):
 
     #Crawling 시작 
     soup=BeautifulSoup(response.text,"html.parser")
-    print(soup)
     #강의명 긁어오기+
     courselist = soup.find("tbody", {"class": "my-course-lists"})
     courses = courselist.find_all('a')
@@ -62,11 +62,44 @@ def home(request):
         response=session.get(url)   #링크로 넘어가기
         response.raise_for_status()
         soup=BeautifulSoup(response.text,"html.parser")
+
+        #강의 요일 긁어오자아아아아
+        topmenu = soup.find("ul", {"class" : "topmenu"})
+        expand = topmenu.find("li", {"class" : "expand"})
+        ul = expand.find("ul")
+        li = ul.find("li")
+        syllabus = li.find("a", {"class" : "submenu-syllabus "})
+        print("syllabus: ",li)
+        syllabus_link = li.find('a').get('href')
+        print("syllabus_link: ",syllabus_link)
+        syllabusresponse=session.get(syllabus_link)
+        response.raise_for_status()
+        syllabussoup=BeautifulSoup(syllabusresponse.text,"html.parser")
+        course_syllabus = syllabussoup.find("div", {"class": "course_syllabus"})
+        course_syllabus_tbody = course_syllabus.find("tbody")
+        # print(course_syllabus_tbody)
+        course_syllabus_tr= course_syllabus_tbody.findAll("tr")
+        print(course_syllabus_tr[2])
+        course_td = course_syllabus_tr[2].find("td")
+        def f(course_date): return {'월': '0', '화': '1', '수': '2', '목': '3', '금': '4'}[course_date]
+        date = course_td.get_text()[0]
+        course_date = f(date)
+        print("요일: ",f(date))
+
+
+
+
         course = soup.find("div", {"class": "total_sections"})  #전체
-        firstweek = course.find("li", {"id": "section-5"})
+        firstweek = course.find("li", {"id": "section-12"})
         section = firstweek.find("ul", {"class": "section img-text"}) 
         if section != None:
             #li class activity assign modtype_assign (과제)
+            def extract_phrase(s):
+                    list = []
+                    pattern = re.compile("(?<=')[^']+(?=')")
+                    for value in pattern.findall(s):
+                        list.append(value)
+                    return list[0]
             lecture = {}
             if section.find("li", {"class": "assign"}) != None:
                 instance = section.find('li',class_="assign")
@@ -100,7 +133,8 @@ def home(request):
             if section.find("li", {"class": "vod"}) != None:
                 instance = section.find("li", {"class": "vod"})
                 vod_name = instance.find("span", {"class": "instancename"})
-                vod_link = instance.find('a').get('onclick')
+                str_link = instance.find('a').get('onclick')
+                vod_link = extract_phrase(str_link)
                 vod_duedate = instance.find("span", {"class":"text-ubstrap"})
                 # print("vod 명 : ",vod_name.get_text())
                 # print("vod 링크 : ",vod_link)
@@ -115,7 +149,8 @@ def home(request):
             if section.find("li", {"class": "url"}) != None:
                 instance = section.find("li", {"class": "url"})
                 link_name = instance.find("span", {"class": "instancename"})
-                url_link = instance.find('a').get('onclick')
+                str_link = instance.find('a').get('onclick')
+                url_link = extract_phrase(str_link)
                 # print("강의 명 : ", link_name.get_text())
                 # print("강의 링크 : ",url_link)
                 # url = {'link_name': link_name.get_text(), 'url_link': url_link}
@@ -143,7 +178,7 @@ def home(request):
             print("No Assginment / Lecture / Quiz")
             lecture = {}
         print(lecture)
-        
+        lecture['course_date'] = course_date
         each_lecture = {'id' : id, 'course': courses[id-1].get_text(), 'body' : lecture}
         lectures.append(each_lecture)
         print("------------------------------------")

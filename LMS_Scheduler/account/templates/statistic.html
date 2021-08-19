@@ -52,7 +52,7 @@
     <div class="contain">
         <div class="content_text">
             <div class="rank">
-                <a href="{% url 'ranking' %}">학습 랭킹</a>
+                <button id="ranking" type="button" onclick="location.href='{% url 'ranking' %}'">학습 랭킹</button>
             </div>
         </div>
       <div class="content">
@@ -60,6 +60,7 @@
             <div class="weekly_box statbox">
                 <div class="weekly_top">
                     <p>Weekly</p>
+                    
                 </div>
                 <div class="weekly_bottom">
                     <div class="chart">

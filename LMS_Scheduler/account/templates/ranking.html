@@ -183,20 +183,17 @@
           myrank = rank;
         }
         ranking[0].innerHTML +=
-            `<div class="ranks"><div class="rank_text">` + rank + 
-            `</div>
-              <div class="id_text">
-                <img
-                  class="usericon"
-                  src="{% static 'userimage/dog (1).png'%}"
-                />
-                <p>` + users.getByIndex(key) + `</p>
+          `<div class="ranks">
+            <div class="rank_text">` + rank + `</div>
+            <div class="id_text">
+              <img
+                class="usericon"
+                src="{% static 'userimage/dog (1).png'%}"/>
+              <p>` + users.getByIndex(key) + `</p>
+            </div>
+            <div class="time_text">` + parseInt(totaltime[key]/3600) + `시간 ` + parseInt(totaltime[key]/60) + `분 ` + parseInt(totaltime[key]%10) + `초</div>
           </div>
-          <div class="time_text">` + parseInt(totaltime[key]/360) + `시</div>
-          <div class="time_text">` + parseInt(totaltime[key]/60) + `분</div>
-          <div class="time_text">` + parseInt(totaltime[key]%10) + `초</div>
-        </div>
-        <div class="line"></div>`
+          <div class="line"></div>`
         rank++;
       }
 
@@ -209,10 +206,7 @@
   user[0].innerHTML = 
     `<img class="myicon" src="{% static 'userimage/cat.png'%}" /><div class="userid">` + 'Me' + `</div>
             <div class="rank">`+ myrank +`등!</div>
-            <div class="time">` +  parseInt(mytotal/360) + `시</div>
-            <div class="time">` +  parseInt(mytotal/60) + `분</div>
-            <div class="time">` +  parseInt(mytotal%10) + `초</div>
-            `
+            <div class="time">` +  parseInt(mytotal/3600) + `시간 ` + parseInt(mytotal/60) + '분 ' +parseInt(mytotal%10) +`초</div>`
             
   </script>
 </html>
