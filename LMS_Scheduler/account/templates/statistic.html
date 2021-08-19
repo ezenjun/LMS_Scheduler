@@ -253,7 +253,10 @@
                 labels: ["일","월", "화", "수", "목", "금", "토"],
                 datasets: [{
                     label: '평균 공부시간',
-                    data: [thisweek[0],thisweek[1],thisweek[2],thisweek[3],thisweek[4],thisweek[5],thisweek[6]],
+                    data: [Math.round(thisweek[0]/60 * 10) / 10,Math.round(thisweek[1]/60 * 10) / 10, 
+                    Math.round(thisweek[2]/60 * 10) / 10,Math.round(thisweek[3]/60 * 10) / 10,
+                    Math.round(thisweek[4]/60 * 10) / 10,Math.round(thisweek[5]/60 * 10) / 10,
+                    Math.round(thisweek[6]/60 * 10) / 10],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.8)',
                         'rgba(54, 162, 235, 0.8)',
@@ -297,7 +300,11 @@
                 labels: ["1주차", "2주차", "3주차", "4주차", "5주차"],
                 datasets: [{
                     label: '평균 공부시간',
-                    data: [weekly[curmonth][0], weekly[curmonth][1], weekly[curmonth][2], weekly[curmonth][3], weekly[curmonth][4]],
+                    data: [Math.round(weekly[curmonth][0]/60 * 10) / 10, 
+                    Math.round(weekly[curmonth][1]/60 * 10) / 10, 
+                    Math.round(weekly[curmonth][2]/60 * 10) / 10, 
+                    Math.round(weekly[curmonth][3]/60 * 10) / 10, 
+                   Math.round(weekly[curmonth][4]/60 * 10) / 10],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.8)',
                         'rgba(54, 162, 235, 0.8)',
