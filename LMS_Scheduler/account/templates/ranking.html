@@ -204,6 +204,7 @@
   var mytotal = 0;
   for(var i=0; i<mystatistics.length; i++){
     mytotal+=Number(mystatistics[i].daily_time);
+    //
   }
   user[0].innerHTML = 
     `<img class="myicon" src="{% static 'userimage/cat.png'%}" /><div class="userid">` + 'Me' + `</div>
