@@ -65,6 +65,7 @@
                     </div>
                 </div>
             </div>
+            <a class = "nav" href="{% url 'studycafe' %}">주변 스터디카페 추천</a>
             <!-- <div class = "today">Today</div> -->
             <div class = "task_container">
                 <div class="swiper-container">
@@ -263,13 +264,13 @@
             for(var j=0; j<lectures.length;j++){
                 var lecture_li = document.createElement("button");
                 var assignment_li = document.createElement("button");
-                lecture_li.className = 'accordion';
+                lecture_li.className = 'accordion star';
                 assignment_li.className = 'accordion';
 
 
                 if(i == lectures[j].course_date*2){
                     if(lectures[j].vod != ''){
-                        lecture_li.innerHTML = lectures[j].course;
+                        lecture_li.innerHTML = lectures[j].course + "&#11088;&#11088;&#11088;";
                         //lecture_li.appendChild(document.createTextNode(lectures[j].vod));
                         ul[i].appendChild(lecture_li);
                         ul[i].innerHTML +=
@@ -304,7 +305,7 @@
                         assignment_li.innerHTML = lectures[j].course;
                         ul[i+1].appendChild(assignment_li);
                         ul[i+1].innerHTML +=
-                        `<div class="panel green" >
+                        `<div class="panel" >
                         <a href=" `+lectures[j].assignment_link +`" target="_blank">`+lectures[j].assignment_name+`</a> <p>`+lectures[j].assignment_duedate + `</p></div>`;
                     }
                     else if(lectures[j].assignment_name != ''){
