@@ -15,42 +15,42 @@
     <title>Calendar</title>
   </head>
   <body>
+    <!-- header -->
     <header>
       <!-- header inner -->
-      <div class="header_inner">
-        <!-- header left -->
-        <div class="header_left">
-          <!-- logo -->
-          <div class="logo">
-            <a class="nav" href="/" title="home" class="logo_text">About us</a>
+      <div class = "header_inner">
+          <!-- header left -->
+          <div class = "header_left">
+              <!-- logo -->
+              <div class = "logo">
+                  <a id="studycafe" href="{% url 'studycafe' %}">주변 스터디카페 추천</a>
+              </div>
+              <!-- end logo -->
           </div>
-          <!-- end logo -->
-        </div>
-        <!-- end header left -->
-        <div class="header_mid">
-          <div class="logo">
-            <img src="{% static 'leftarm.png' %}" width="60px" />
-            <a href="/lms" title="home" class="logo_text">개강한 대학생</a>
-            <img src="{% static 'rightarm.png' %}" width="60px" />
+          <!-- end header left -->
+          <div class = "header_mid">
+              <div class = "logo">
+                  <img src="{% static 'leftarm.png' %}" width="60px">
+                  <a href="/lms" title = "home" class = "logo_text">개강한 대학생</a>
+                  <img src="{% static 'rightarm.png' %}" width="60px">
+              </div>
           </div>
-        </div>
-        <!-- header right -->
-        <div class="header_right">
-          <a class="nav" href="{% url 'calendar' %}">출석체크</a>
-          <a class="nav" href="{% url 'mypage' %}">마이페이지</a>
-          <a class="nav" href="{% url 'logout' %}">로그아웃</a>
-        </div>
-        <!-- end header right -->
+          <!-- header right -->
+          <div class = "header_right">
+              <a class = "nav" href="{% url 'calendar' %}">출석체크</a>
+              <a class = "nav" href="{% url 'mypage' %}">마이페이지</a>
+              <a class = "nav" href="{% url 'logout' %}">로그아웃</a>
+          </div>
+          <!-- end header right -->
       </div>
       <!-- end header inner -->
-    </header>
+  </header>
 
     <div class="contain">
       <div class="content">
         <div class="content_top">
-          <div class="top_left" id="customizing">
-            <!-- <a href="{% url 'customize' %}">커스터마이징</a> -->
-            <button type="button" onclick="location.href='{% url 'customize' %}'">커스터마이징</button>
+          <div class="top_left" >
+            <button id="customizing" type="button" onclick="location.href='{% url 'customize' %}'">커스터마이징</button>
           </div>
           <div class="top_center" id="checkin">
             <button id="checkinbtn">출석체크하기!</button>

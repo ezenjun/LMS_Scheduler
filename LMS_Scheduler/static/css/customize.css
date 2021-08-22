@@ -7,64 +7,77 @@ body {
 
 /* header */
 
-header {
+header{
     width: 100%;
     height: 70px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgb(150, 150, 150);
     font-family: 'Nanum Gothic', sans-serif;
-}
-
-.header_inner {
+    background-color: rgba(252, 252, 252, 0.651);
+  
+  }
+  
+  .header_inner{
     margin: 0 auto;
     width: 1800px;
     height: 46px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.header_left {
+  }
+  
+  .header_left{
     display: flex;
     justify-content: flex-start;
     width: 33.3%;
-}
-
-.nav {
+  }
+  .nav{
     text-decoration: none;
     color: #333;
-    font-size: 18px;
+    font-size: 15px;
     margin-right: 20px;
-}
-
-.header_mid {
+  }
+  .header_mid{
     display: flex;
     justify-content: center;
-    width: 33.3%;
-}
-
-.logo {
+    width:33.3%;
+  }
+  .logo{
     margin: 0;
     display: flex;
     align-items: center;
-}
-
-.logo_text {
+  }
+  .logo_text{
     text-decoration: none;
     color: #333;
     font-size: 26px;
     font-family: 'Nanum Gothic', sans-serif;
     font-weight: bold;
-}
-
-.header_right {
+  }
+  
+  .header_right{
     display: flex;
     align-items: center;
     justify-content: flex-end;
     width: 33.3%;
-}
-
+  }
+  .header_right a{
+    text-decoration: none;
+    color: black;
+    padding: 12px;
+    font-weight: bold;
+  }
+  #studycafe{
+    text-decoration: none;
+    color: black;
+    background-color: #eee;
+    border: 4px solid #f3a79d;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.26);
+    padding: 12px;
+    font-weight: bold;
+  }
 /* Body */
 
 .contain {

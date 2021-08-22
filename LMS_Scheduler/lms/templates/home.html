@@ -27,7 +27,7 @@
             <div class = "header_left">
                 <!-- logo -->
                 <div class = "logo">
-                    <a class = "nav" href="/" title = "home" class = "logo_text">About us</a>
+                    <a id="studycafe" href="{% url 'studycafe' %}">주변 스터디카페 추천</a>
                 </div>
                 <!-- end logo -->
             </div>
@@ -65,113 +65,11 @@
                     </div>
                 </div>
             </div>
-            <a class = "nav" href="{% url 'studycafe' %}">주변 스터디카페 추천</a>
+            
             <!-- <div class = "today">Today</div> -->
             <div class = "task_container">
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
-                <!-- <div class = "day_box">
-                    <div class = "day">월</div>
-                    <div class="lecture">
-                        <p>강의</p>
-                        <ul class ="list">
-                            <li>취창업 전략 특강</li>
-                            <li>동양 철학의 이해</li>
-                            <li>테니스</li>
-                        </ul>
-                    </div>
-                    <div class = "border"></div>
-                    <div class="assignment"> 
-                        <p>과제</p>
-                        <ul class ="list">
-                            <li>취장업 전략 특강 출석</li>
-                            <li>동양 철학의 이해 레포트</li>
-                            <li>테니스 출석과제</li>
-                        </ul>
-                    </div>
-                </div> -->
-                <!-- <div class = "day_box">
-                    <div class = "day">화</div>
-                    <div class="lecture">
-                        <p>강의</p>
-                        <ul class ="list">
-                            <li>문제해결 기법</li>
-                            <li>산학 프로젝트 I</li>
-                            <li>운영체제 및 실습</li>
-                            <li>해외연구 실습</li>
-                        </ul>
-                    </div>
-                    <div class = "border"></div>
-                    <div class="assignment"> 
-                        <p>과제</p>
-                        <ul class ="list">
-                            <li>과제1 - 레드블랙 하노이</li>
-                            <li>중간 발표 보고서</li>
-                            <li>Nachos 1</li>
-                            <li>Arduino Blink</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class = "day_box today_box">
-                    <div class = "day">수</div>
-                    <div class="lecture">
-                        <p>강의</p>
-                        <ul class ="list">
-                            <li><a  href="">데이터 사이언스</a></li>
-                            <li><a class = "orange">AI 프로그래밍</a></li>
-                            <li><a >동양철학의 이해</a></li>
-                            <li><a class = "red" href="">컴파일러</a></li>
-                        </ul>
-                    </div>
-                    <div class = "border"></div>
-                    <div class="assignment"> 
-                        <p>과제</p>
-                        <ul class ="list">
-                            <li>군집화 모델 생성</li>
-                            <li><a class = "red" href="">2주차 Quiz</a></li>
-                            <li>출석 감상문</li>
-                            <li><a class = "orange">Intro to Compiler</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class = "day_box">
-                    <div class = "day">목</div>
-                    <div class="lecture">
-                        <p>강의</p>
-                        <ul class ="list">
-                            <li><a class = "green" href="">해외연구 실습</a></li>
-                            <li>전자기학</li>
-                            <li><a class = "orange" href="">컴퓨터 비전</a></li>
-                        </ul>
-                    </div>
-                    <div class = "border"></div>
-                    <div class="assignment"> 
-                        <p>과제</p>
-                        <ul class ="list">
-                            <li>문제풀이 영상 촬영</li>
-                            <li><a class = "red" href="">Paper presentation</a></li>
-                            <li>Image Transfer</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class = "day_box">
-                    <div class = "day">금</div>
-                    <div class="lecture">
-                        <p>강의</p>
-                        <ul class ="list">
-                            <li>AI 프로그래밍</li>
-                            <li>문제해결 기법</li>
-                        </ul>
-                    </div>
-                    <div class = "border"></div>
-                    <div class="assignment"> 
-                        <p>과제</p>
-                        <ul class ="list">
-                            <li>CNN model</li>
-                            <li><a class = "green" href="">Dynamic Programming</a></li>
-                        </ul>
-                    </div>
-                </div> -->
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
@@ -274,7 +172,7 @@
                         //lecture_li.appendChild(document.createTextNode(lectures[j].vod));
                         ul[i].appendChild(lecture_li);
                         ul[i].innerHTML +=
-                        `<div class="panel" >
+                        `<div class="panel red" >
                         <a href=" ` + lectures[j].vod_link + `" target="_blank">`+lectures[j].vod+`</a> <p>`+lectures[j].vod_duedate+ `</p></div>`;
                     }
                     // if(lectures[j].vod_link != ''){
@@ -290,7 +188,7 @@
                         //lecture_li.appendChild(document.createTextNode(lectures[j].link_name));
                         ul[i].appendChild(lecture_li);
                         ul[i].innerHTML +=
-                        `<div class="panel" >
+                        `<div class="panel red" >
                             <a href=" ` + lectures[j].url_link + `" target="_blank">`+lectures[j].link_name+`</a></div>`;
                     }
                     // if(lectures[j].url_link != ''){
@@ -302,17 +200,17 @@
                 //////////////////////////////////////////////////////////////////////////////////////
                 if(i == lectures[j].assignment_dueweekday*2){
                     if(lectures[j].assignment_name != '' && lectures[j].assignment_duedate != ''){
-                        assignment_li.innerHTML = lectures[j].course;
+                        assignment_li.innerHTML = lectures[j].course + "&#11088;&#11088;";
                         ul[i+1].appendChild(assignment_li);
                         ul[i+1].innerHTML +=
-                        `<div class="panel" >
+                        `<div class="panel orange" >
                         <a href=" `+lectures[j].assignment_link +`" target="_blank">`+lectures[j].assignment_name+`</a> <p>`+lectures[j].assignment_duedate + `</p></div>`;
                     }
                     else if(lectures[j].assignment_name != ''){
                         assignment_li.innerHTML = lectures[j].course;
                         ul[i+1].appendChild(assignment_li);
                         ul[i+1].innerHTML +=
-                        `<div class="panel">
+                        `<div class="panel orange">
                         <p>`+lectures[j].assignment_name+`</p></div>`;
                     }
                     
@@ -327,14 +225,14 @@
                     assignment_li.innerHTML = lectures[j].course;
                     ul[i+1].appendChild(assignment_li);
                     ul[i+1].innerHTML +=
-                    `<div class="panel">
+                    `<div class="panel green">
                     <a href=" `+lectures[j].quiz_link +`" target="_blank">`+lectures[j].quiz_name+ `</a></div>`;
                 }
                 else if(lectures[j].quiz_name != ''){
                     assignment_li.innerHTML = lectures[j].course;
                     ul[i+1].appendChild(assignment_li);
                     ul[i+1].innerHTML +=
-                    `<div class="panel">
+                    `<div class="panel green">
                     <p>`+lectures[j].quiz_name+`</p></div>`;
                 }
 
