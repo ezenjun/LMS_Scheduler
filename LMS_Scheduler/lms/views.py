@@ -1,13 +1,13 @@
 from django.shortcuts import redirect, render
-from bs4 import BeautifulSoup
-import requests
 from django.contrib.auth.models import AnonymousUser, User
 from account.models import *
 from datetime import datetime
 import time
 import re
 import json
+import requests
 from django.views.decorators.csrf import csrf_exempt
+from bs4 import BeautifulSoup
 # Create your views here.
 
 def finish(request):

@@ -163,12 +163,7 @@
         <div id="notice" class="tabcontent scrollableContent">
           <div class="menu"><p>공지사항</p></div>
           <div class="noticebox">
-            <div class="notice_text">
-              <div>NO</div>
-              <div>제목</div>
-              <div>날짜</div>
-              <div>조회수</div>
-            </div>
+            
             <div class="notices">
               {% for notice in notices.all %}
               <button class="accordion">{{notice.notice_title}}</button>

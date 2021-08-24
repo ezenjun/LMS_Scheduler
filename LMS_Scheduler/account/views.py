@@ -5,10 +5,10 @@ from django.contrib import auth
 from django.utils import timezone
 from .models import *
 from django.http import JsonResponse  
-import requests
 import json
 from lms.views import home
 from django.views.decorators.csrf import csrf_exempt
+import requests
 
 
 # Create your views here.
